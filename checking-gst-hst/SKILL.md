@@ -2,22 +2,16 @@
 name: checking-gst-hst
 description: "Guides users through a structured review of their GST/HST obligations as a self-employed Canadian. Collects revenue figures, supply types, registration status, and filing history to produce an organized summary a CPA can act on. Does not advise on registration decisions, exempt supply classification, or Quick Method elections. Trigger on: 'do I need to charge HST', 'should I be registered for GST', 'check my GST situation', 'I think I missed a GST filing', 'help me figure out my HST', 'am I over the small supplier limit'."
 metadata:
-  author: cpa-skills
+  author: Alex Teplov
   version: 1.0.0
   category: tax-compliance
 ---
 
-## Workflow position
+# Checking GST/HST
 
-Runs after identifying-income-sources. Output feeds into preparing-cpa-review if the user is preparing for a CPA meeting, or stands alone as a compliance check.
+**Workflow position:** Runs after `identifying-income-sources`. Output feeds into `preparing-cpa-review` if the user is preparing for a CPA meeting, or stands alone as a compliance check.
 
----
-
-## Core constraint
-
-Deliver this before starting:
-
-"This workflow organizes your GST/HST information. It does not verify accuracy or completeness, and does not determine whether your supplies are taxable, zero-rated, or exempt. That classification affects your obligations in ways that require a CPA to confirm. Work through this before meeting with your CPA, not instead of it."
+**Core constraint:** This workflow organizes GST/HST information. It does not verify accuracy or completeness, and does not determine whether supplies are taxable, zero-rated, or exempt. State this to the user before starting.
 
 ---
 
@@ -27,25 +21,33 @@ Collect and organize. Do not advise on whether the user should register, whether
 
 ---
 
-## Data handling notice
-
-Deliver this before collecting any documents or account information:
-
-"Before we start: do not share your SIN or business number in full. If you pull CRA documents for reference, redact those fields first. Revenue figures and filing history are commercially sensitive. This conversation may be stored by the platform you are using. Do not paste raw CRA notices or account statements into the chat."
-
----
-
 ## Workflow
 
-### Step 1: Confirm the business type and province
+Copy this checklist at the start of each session:
 
-Ask:
-- What province or territory is the business located in?
-- What type of work does the business do? (Ask for a plain-language description, not a category.)
+```
+Progress:
+- [ ] Step 1: Open conversation and deliver data notice
+- [ ] Step 2: Collect taxable supply figures by quarter
+- [ ] Step 3: Identify supply types
+- [ ] Step 4: Check registration status
+- [ ] Step 5: Identify filing gaps
+- [ ] Step 6: Quick Method note
+- [ ] Step 7: Produce the summary
+```
 
-Note the province as context. The rate that should have been charged on a given supply is determined by the place of supply, not only by the province where the business is located. For most service businesses operating in one province, these will be the same. Where the user serves clients in multiple provinces, flag it for CPA review.
+### Step 1: Open the conversation
 
-HST provinces (Ontario, New Brunswick, Nova Scotia, PEI, Newfoundland) have a single combined rate. GST-only provinces use GST at 5% plus provincial sales tax handled separately. Quebec: Revenu Québec generally administers both GST/HST and QST for businesses located there. If the user is in Quebec, note this. For most Quebec businesses, account access, filing, and many GST/HST questions go through Revenu Québec, not CRA My Business Account, for both taxes. Flag for CPA review if any Quebec-specific questions arise.
+State before asking any questions:
+
+1. This workflow builds a GST/HST summary the user can bring to a CPA.
+2. "This process relies on what you provide. It will not catch everything on its own."
+3. Deliver the data handling notice below.
+4. Ask which tax year or period they are reviewing.
+
+**Data handling notice. State before collecting any information:**
+
+> Do not share your SIN or business number in full. If you pull CRA documents for reference, redact those fields first. Revenue figures and filing history are commercially sensitive. This conversation may be stored by the platform you are using. Do not paste raw CRA notices or account statements into the chat.
 
 ### Step 2: Collect taxable supply figures by quarter
 
@@ -62,10 +64,16 @@ Note the registration timing question for the summary: CRA registration timing d
 ### Step 3: Identify supply types
 
 Ask:
+- What province or territory is the business located in?
+- What type of work does the business do? (Ask for a plain-language description, not a category.)
 - Does the business sell goods, services, or both?
 - Are any services in these categories: health care or dental services, financial services, educational services, residential rent, or insurance?
 
-These categories may involve exempt or zero-rated supplies that change the obligation picture. Do not classify them. Legal services are generally taxable and should not be assumed exempt unless the user raises a specific question, in which case flag for CPA review. If the user identifies any of the categories above, flag for CPA review before proceeding with registration or filing assumptions.
+Note the province as context. The rate that should have been charged on a given supply is determined by the place of supply, not only by the province where the business is located. For most service businesses operating in one province, these will be the same. Where the user serves clients in multiple provinces, flag it for CPA review.
+
+HST provinces (Ontario, New Brunswick, Nova Scotia, PEI, Newfoundland) have a single combined rate. GST-only provinces use GST at 5% plus provincial sales tax handled separately. Quebec: Revenu Québec generally administers both GST/HST and QST for businesses located there. If the user is in Quebec, note this. For most Quebec businesses, account access, filing, and many GST/HST questions go through Revenu Québec, not CRA My Business Account, for both taxes. Flag for CPA review if any Quebec-specific questions arise.
+
+The categories listed above may involve exempt or zero-rated supplies that change the obligation picture. Do not classify them. Legal services are generally taxable and should not be assumed exempt unless the user raises a specific question, in which case flag for CPA review. If the user identifies any of the categories above, flag for CPA review before proceeding with registration or filing assumptions.
 
 Checklist for the user to work through:
 
@@ -119,23 +127,23 @@ Compile everything into a plain summary:
 - Quick Method status
 - Taxi/ride-sharing flag if applicable
 
-End with: "This summary is ready for your CPA to review. The items flagged above are the ones that need professional input before you file or register."
+After producing the summary:
+- Ask the user to review and flag anything that looks wrong
+- State: "This summary is ready for your CPA to review. The items flagged above are the ones that need professional input before you file or register."
 
 ---
 
-## Common mistakes
+## Common Mistakes to Watch For
 
-Users often confuse zero-rated and exempt supplies. Both result in no HST collected from clients, but they are not the same: zero-rated supplies still allow the seller to claim input tax credits (ITCs) on related expenses, while exempt supplies do not. Do not explain this distinction as advice. Note it as a reason those classifications need CPA confirmation.
+**Zero-rated and exempt are not the same:** Both result in no HST collected from clients, but zero-rated supplies still allow the seller to claim input tax credits (ITCs) on related expenses, while exempt supplies do not. Do not explain this distinction as advice. Note it as a reason those classifications need CPA confirmation.
 
-Users often undercount revenues by reporting only deposits received, missing amounts that were paid or became due in the period by other means. Ask whether the figures include all amounts that were paid or became due in the period, not just deposits received.
+**Undercounting revenues:** Users often report only deposits received, missing amounts that were paid or became due in the period by other means. Ask whether the figures include all amounts that were paid or became due in the period, not just deposits received.
 
-Users sometimes report net revenue after platform fees or agent commissions. The threshold applies to gross taxable revenues, not net.
+**Net vs gross revenues:** Users sometimes report net revenue after platform fees or agent commissions. The threshold applies to gross taxable revenues, not net.
 
 ---
 
-## Stop conditions
-
-Stop and refer to a CPA before the user proceeds if:
+## Stop and Refer to a CPA If:
 
 - The user believes they crossed the $30,000 threshold in a prior period and never registered. Late registration has back-filing and potential penalty implications. "That is outside what this workflow covers. It is a question for a CPA before you take any action."
 - The user has collected HST from clients but has not filed or remitted for one or more periods. "That is outside what this workflow covers. It is a question for a CPA before you take any action."
@@ -146,15 +154,8 @@ Stop and refer to a CPA before the user proceeds if:
 
 ---
 
-## Where a CPA adds value
+## Where a CPA Adds Value
 
-This workflow produces organized facts. A CPA does the following with that output:
+At the end of the workflow, state:
 
-- Confirms whether specific supplies are taxable, zero-rated, or exempt, and what that means for ITC eligibility
-- Determines whether late registration is required and manages the back-filing process with CRA
-- Evaluates Quick Method eligibility and whether it makes sense for the specific business
-- Reviews ITC claims against eligible expenses
-- Resolves filing gaps and advises on voluntary disclosure if penalties are a factor
-- Confirms the correct reporting period and whether a change is warranted
-
-No workflow replaces that review. This workflow makes it faster.
+> This summary reflects what you have identified and provided. A CPA will confirm whether specific supplies are taxable, zero-rated, or exempt, determine whether late registration is required, evaluate Quick Method eligibility, review ITC claims, and resolve any filing gaps. The value is not in collecting these numbers. It is in validating and acting on them before you file or register.
