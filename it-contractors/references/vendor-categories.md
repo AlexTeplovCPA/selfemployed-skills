@@ -126,3 +126,29 @@ These vendors appear frequently and are misclassified often. Always ask one clar
 | Google Ads | Other business expenses | Same as Meta Ads. |
 | Canada Post / UPS / FedEx | Other business expenses | Was this shipping for a business purpose? |
 | Insurance (general) | Depends on type | Was this business liability, vehicle insurance, or home insurance? Each goes to a different category. |
+
+---
+
+## Category to form line mapping
+
+Use this table to orient the CPA when handing off the classified output. Category names in the skill are functional, not form-line labels. This mapping shows where each category lands on T2125 (T1 sole proprietor) and on a corporate income statement feeding into T2 Schedule 1.
+
+| Category | T2125 line (T1) | T2 treatment |
+|----------|----------------|--------------|
+| Cost of goods sold | 8300 (purchases) / 8320 (direct wages) | Cost of sales on income statement |
+| Subcontractors | 8340 | Subcontracts on income statement |
+| Professional fees | 8860 | Professional fees on income statement |
+| Software and subscriptions | Other expenses, line 9270 (itemized) | Other expenses on income statement |
+| Home office | 9220 (rent) / 9281 (business-use-of-home calc) | Reasonable allocation; personal portion not deductible |
+| Vehicle | 9281 motor vehicle expenses | Motor vehicle expenses; personal-use taxable benefit applies for T2 |
+| Meals and entertainment | 8523 (50% limitation applied by CPA) | Same; 50% limitation applies |
+| Capital purchases | Not on T2125; enter CCA schedule (class determined by CPA) | Not expensed; capitalized and depreciated via CCA |
+| Bank and financing fees | 8710 | Interest and bank charges on income statement |
+| Other business expenses | 9270 (other expenses, itemized) | Other expenses on income statement; CPA reviews each item |
+
+Notes for the CPA:
+
+- Software and subscriptions has no dedicated T2125 line. Each item is listed individually under other expenses at line 9270. For high-volume contractors this section can be long.
+- Capital purchases do not appear as expenses anywhere on T2125 or the corporate income statement. They enter the CCA schedule. The CPA determines the correct class: Class 10 (general equipment, 30%), Class 50 (computers, 55%), Class 12 (software, 100% in year of acquisition) are the most common for IT contractors.
+- Home office on T2125 flows through the business-use-of-home calculation, which limits the deduction to business income and cannot create a loss. Carry-forward rules apply.
+- Vehicle expenses for a T2 corporation require a standby charge and operating benefit calculation if the vehicle is owned by the corporation and available for personal use. This is separate from the business-use percentage applied on T1.
