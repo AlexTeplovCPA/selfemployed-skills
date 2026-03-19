@@ -1,15 +1,15 @@
 ---
-name: classifying-expenses
+name: 03-classifying-expenses
 description: "Classifies a self-employed IT contractor's expense transactions into functional categories, with branching logic for sole proprietors (T1, T2125) and incorporated contractors (T2, Schedule 1). Produces a categorized expense list ready for CPA review. Trigger on: 'help me sort my expenses', 'classify my transactions', 'organize my expenses for taxes', 'what category does this go in', 'help me categorize my bookkeeping'."
 metadata:
-  author: Alex Teplov CPA
+  author: Alex Teplov
   version: 1.0.0
   category: bookkeeping
 ---
 
 # Classifying Expenses
 
-**Workflow position:** Runs after identifying-income-sources confirms the income picture for the period. Runs before bookkeeping-review and any T1 or T2 preparation skill. Output also feeds into checking-gst-hst: transactions where GST/HST was charged should be flagged so ITC eligibility can be assessed separately.
+**Workflow position:** Runs after `01-identifying-income-sources` confirms the income picture for the period. Runs before `04-preparing-cpa-t1-package` and `05-preparing-cpa-t2-package`. Output also feeds into `02-checking-gst-hst`: transactions where GST/HST was charged should be flagged so ITC eligibility can be assessed separately. When the ledger is ready for practitioner-level review, output can feed into `bookkeeping-review` in cpa-skills.
 
 **Core constraint:** This workflow organizes and classifies transactions. It does not verify that the list is complete, confirm amounts are correct, or determine whether expenses are deductible. State this to the user before starting.
 
@@ -48,7 +48,7 @@ Then deliver the data handling notice before anything is shared:
 
 Ask the user to share their transaction list. This can be a pasted export, a CSV description, or a typed summary. It does not need to be formatted. Accept whatever they have.
 
-Note whether the transaction list includes GST/HST amounts as separate columns or combined with the expense amount. If separate, keep them separate throughout. The GST/HST paid on business expenses may be recoverable as input tax credits. That assessment belongs to checking-gst-hst, not this workflow. Flag transactions where GST/HST was charged so they are visible in the output.
+Note whether the transaction list includes GST/HST amounts as separate columns or combined with the expense amount. If separate, keep them separate throughout. The GST/HST paid on business expenses may be recoverable as input tax credits. That assessment belongs to `02-checking-gst-hst`, not this workflow. Flag transactions where GST/HST was charged so they are visible in the output.
 
 **Step 3: Classify transactions**
 
@@ -103,7 +103,7 @@ Then state:
 - The user asks how to split a mixed-use expense between personal and business. "That calculation involves facts about your usage that your CPA should assess."
 - The transaction list includes inter-company transfers, loans, or related-party payments. "Transactions between related entities or shareholders need CPA review before they are classified. Flag these."
 - The user is an incorporated contractor and has expenses that may be shareholder benefits. Flag and stop on those items. Do not classify them as deductions.
-- The user asks about GST/HST input tax credits on specific expenses. "ITC eligibility is a separate question from classification. That belongs in the checking-gst-hst workflow."
+- The user asks about GST/HST input tax credits on specific expenses. "ITC eligibility is a separate question from classification. That belongs in the `02-checking-gst-hst` workflow."
 
 ---
 
