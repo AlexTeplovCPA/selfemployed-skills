@@ -1,5 +1,5 @@
 ---
-name: preparing-cpa-t1-package
+name: 04-preparing-cpa-t1-package
 description: "Assembles a personal tax handoff package for a Canadian with self-employment income and, where relevant, coordinates with a separate corporate package for an incorporated owner-manager's personal T1 filing. Guides the user through collecting the outputs of prior workflow steps, identifying missing items, and producing a cover summary the CPA can act on directly. Does not give tax advice, complete forms, or advise on filing positions. Trigger on: 'prepare for my CPA meeting', 'get my tax documents ready', 'what does my accountant need from me', 'organize everything for tax season', 'put together my tax package', 'what should I send my CPA', 'I have a meeting with my accountant'."
 metadata:
   author: Alex Teplov
@@ -9,7 +9,7 @@ metadata:
 
 # Preparing CPA T1 Package
 
-**Workflow position:** Consolidation skill in the selfemployed-skills personal tax sequence. Typically runs after `01-identifying-income-sources`, a profession-specific variant of `03-classifying-expenses` (for example, `03-classifying-expenses/it-contractors`), and `02-checking-gst-hst`, but can also run earlier to identify missing items before a CPA meeting. If the user is incorporated, note that a separate corporate package may also be needed, typically through `05-preparing-cpa-t2-package`. Together, the personal and corporate summaries help the CPA understand the personal and corporate sides of the owner-manager file.
+**Workflow position:** Consolidation skill in the selfemployed-skills personal tax sequence. Typically runs after `01-identifying-income-sources`, a profession-specific variant of `03-classifying-expenses` (for example, `03-classifying-expenses/it-contractor`), and `02-checking-gst-hst`, but can also run earlier to identify missing items before a CPA meeting. If the user is incorporated, note that a separate corporate package may also be needed, typically through `05-preparing-cpa-t2-package`. Together, the personal and corporate summaries help the CPA understand the personal and corporate sides of the owner-manager file.
 
 **Core constraint:** This workflow organizes information the user provides. It does not guarantee completeness and may not detect items the user has omitted or described inaccurately. State this to the user before starting.
 
@@ -52,7 +52,7 @@ State before asking any questions:
 3. Deliver the data handling notice below.
 4. Ask which tax year the package is for.
 5. Ask whether they have completed the income, expense, and GST/HST workflow steps already, or whether they are starting fresh.
-6. If they completed the expense step, ask which classifying-expenses variant they used. Current variants are in `03-classifying-expenses/` subfolders. If they do not know the folder name, ask what type of self-employment work they do and note the profession for the cover summary.
+6. If they completed the expense step, ask which `03-classifying-expenses` variant they used. Current variants are in `03-classifying-expenses/` subfolders. If they do not know the subfolder name, ask what type of self-employment work they do and note the profession for the cover summary.
 
 **Data handling notice. State before collecting any information:**
 
@@ -100,9 +100,9 @@ First, confirm whether the user is a sole proprietor or operates through a corpo
 
 **If incorporated:** Business income and operating expenses belong to the corporation and are handled through the T2 package. Do not collect a full corporate expense summary here. Instead, note that the corporate expense picture belongs in `05-preparing-cpa-t2-package` and collect only T1-relevant items: any personal self-employment income earned outside the corporation, compensation received from the corporation such as salary or dividends, and note that other personal tax items will be collected in Step 6.
 
-For sole proprietors, confirm which classifying-expenses variant was used. If already captured in Step 1, carry it forward. If not, ask now. Record the variant name for the cover summary.
+For sole proprietors, confirm which `03-classifying-expenses` variant was used. If already captured in Step 1, carry it forward. If not, ask now. Record the variant name for the cover summary.
 
-If the user completed a classifying-expenses variant, ask them to paste or summarize the output.
+If the user completed a `03-classifying-expenses` variant, ask them to paste or summarize the output.
 
 If starting fresh, ask what type of self-employment work they do, then collect expenses by category. Ask for totals, not line-by-line detail:
 
@@ -187,7 +187,7 @@ Notes: [any income flags from Step 3]
 Business structure: [sole proprietor / incorporated]
 Corporate expense package: [not applicable / handled separately in T2 package / not yet prepared]
 Total operating expenses: $[amount] / [not applicable, incorporated]
-Expense variant used: [classifying-expenses/variant-name / not used, collected fresh / not applicable]
+Expense variant used: [03-classifying-expenses/variant-name / not used, collected fresh / not applicable]
 Categories with amounts: [list / not applicable]
 Capital purchases flagged for CCA review: [list items and amounts / none]
 Notes: [vehicle/home office business-use percentage needed, any flags]
@@ -225,7 +225,7 @@ If the user is incorporated, ask whether they have also prepared or started `05-
 
 ## Common Mistakes to Watch For
 
-**Treating the package as complete when information is missing:** If prior workflows were skipped and the same information was not collected directly in this workflow, the package is incomplete. State what is missing before producing the cover summary. If no classifying-expenses variant exists for the user's profession, note this and collect expenses fresh using the categories in Step 4.
+**Treating the package as complete when information is missing:** If prior workflows were skipped and the same information was not collected directly in this workflow, the package is incomplete. State what is missing before producing the cover summary. If no `03-classifying-expenses` variant exists for the user's profession, note this and collect expenses fresh using the categories in Step 4.
 
 **Capital purchases in operating expenses:** If the expense summary includes equipment, computers, or similar items over approximately $500 without a flag, flag them separately for CPA review as potential capital items. They may need to be added to the CCA schedule rather than deducted as current operating expenses.
 
