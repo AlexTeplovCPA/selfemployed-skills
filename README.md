@@ -1,4 +1,4 @@
-# it-contractors
+# it-contractors-skills
 
 AI workflow skills for IT contractors preparing for tax filing or CPA review.
 
