@@ -1,13 +1,24 @@
-# Vendor classification reference
+# Vendor Classification Reference
 
 For use with the classifying-expenses skill. When a transaction vendor matches an entry below, apply the listed category and flag note. Where the GST/HST column indicates "likely yes," flag the transaction for ITC review as instructed in Step 2. Where classification depends on context, ask one clarifying question before assigning.
 
+## Contents
+- Cloud Infrastructure and Hosting
+- Development Tools and Services
+- Productivity and Communication
+- Hardware and Equipment
+- Professional Services and Finance
+- Learning and Professional Development
+- Meals, Travel, and Entertainment
+- Ambiguous or High-Risk Vendors
+- Category to Form Line Mapping
+
 ---
 
-## Cloud infrastructure and hosting
+## Cloud Infrastructure and Hosting
 
-| Vendor | Default category | GST/HST | Flag or note |
-|--------|-----------------|---------|--------------|
+| Vendor | Default Category | GST/HST | Flag or Note |
+|---|---|---|---|
 | Amazon Web Services (AWS) | Software and subscriptions | No (US supplier, not registered) | If resold to client, may be cost of goods sold. Confirm with user. |
 | Google Cloud Platform (GCP) | Software and subscriptions | No (US supplier, not registered) | Same as AWS. |
 | Microsoft Azure | Software and subscriptions | Yes | |
@@ -21,13 +32,13 @@ For use with the classifying-expenses skill. When a transaction vendor matches a
 
 ---
 
-## Development tools and services
+## Development Tools and Services
 
-| Vendor | Default category | GST/HST | Flag or note |
-|--------|-----------------|---------|--------------|
+| Vendor | Default Category | GST/HST | Flag or Note |
+|---|---|---|---|
 | GitHub | Software and subscriptions | No (US supplier) | |
 | GitLab | Software and subscriptions | No (US supplier) | |
-| JetBrains | Software and subscriptions | No (EU supplier) | Annual license. If over $500, flag for CCA review. |
+| JetBrains | Software and subscriptions | No (EU supplier) | Annual licence. If over $500, flag for CCA review. |
 | Atlassian (Jira, Confluence) | Software and subscriptions | No (AU supplier) | |
 | Linear | Software and subscriptions | No (US supplier) | |
 | Postman | Software and subscriptions | No (US supplier) | |
@@ -41,10 +52,10 @@ For use with the classifying-expenses skill. When a transaction vendor matches a
 
 ---
 
-## Productivity and communication
+## Productivity and Communication
 
-| Vendor | Default category | GST/HST | Flag or note |
-|--------|-----------------|---------|--------------|
+| Vendor | Default Category | GST/HST | Flag or Note |
+|---|---|---|---|
 | Notion | Software and subscriptions | No (US supplier) | |
 | Slack | Software and subscriptions | No (US supplier) | |
 | Zoom | Software and subscriptions | No (US supplier) | |
@@ -57,10 +68,10 @@ For use with the classifying-expenses skill. When a transaction vendor matches a
 
 ---
 
-## Hardware and equipment
+## Hardware and Equipment
 
-| Vendor | Default category | GST/HST | Flag or note |
-|--------|-----------------|---------|--------------|
+| Vendor | Default Category | GST/HST | Flag or Note |
+|---|---|---|---|
 | Apple Store | Capital purchase or software and subscriptions | Yes | Hardware (MacBook, iPad, monitor) over $500: flag for CCA. Apps and iCloud: software and subscriptions. Confirm which with user. |
 | Best Buy | Capital purchase | Yes | Flag for CCA if over $500. |
 | Canada Computers | Capital purchase | Yes | Flag for CCA if over $500. |
@@ -72,10 +83,10 @@ For use with the classifying-expenses skill. When a transaction vendor matches a
 
 ---
 
-## Professional services and finance
+## Professional Services and Finance
 
-| Vendor | Default category | GST/HST | Flag or note |
-|--------|-----------------|---------|--------------|
+| Vendor | Default Category | GST/HST | Flag or Note |
+|---|---|---|---|
 | Stripe | Bank and financing fees | No (US supplier) | Payment processing fees only. If Stripe charge is for a subscription product, classify by the product. |
 | PayPal | Bank and financing fees | No (US supplier) | Same as Stripe. |
 | Wave | Software and subscriptions | Yes (Canadian company) | |
@@ -87,10 +98,10 @@ For use with the classifying-expenses skill. When a transaction vendor matches a
 
 ---
 
-## Learning and professional development
+## Learning and Professional Development
 
-| Vendor | Default category | GST/HST | Flag or note |
-|--------|-----------------|---------|--------------|
+| Vendor | Default Category | GST/HST | Flag or Note |
+|---|---|---|---|
 | Udemy | Other business expenses | No (US supplier) | Professional development. Confirm business relevance with user. |
 | Coursera | Other business expenses | No (US supplier) | Same as Udemy. |
 | LinkedIn Learning | Other business expenses | No (US supplier) | Same as Udemy. |
@@ -100,10 +111,10 @@ For use with the classifying-expenses skill. When a transaction vendor matches a
 
 ---
 
-## Meals, travel, and entertainment
+## Meals, Travel, and Entertainment
 
-| Vendor | Default category | GST/HST | Flag or note |
-|--------|-----------------|---------|--------------|
+| Vendor | Default Category | GST/HST | Flag or Note |
+|---|---|---|---|
 | Restaurants (any) | Meals and entertainment | Yes | Flag 50% limitation. Confirm business purpose with user. |
 | Uber Eats / DoorDash / SkipTheDishes | Meals and entertainment or personal | Yes | Delivery during work: meals and entertainment, flag 50%. Personal meal: do not classify as business. Confirm with user. |
 | Uber / Lyft | Vehicle or meals and entertainment | Yes | Business travel: vehicle. Client entertainment involving transportation: meals and entertainment. Confirm with user. |
@@ -113,12 +124,12 @@ For use with the classifying-expenses skill. When a transaction vendor matches a
 
 ---
 
-## Ambiguous or high-risk vendors
+## Ambiguous or High-Risk Vendors
 
 These vendors appear frequently and are misclassified often. Always ask one clarifying question before assigning a category.
 
-| Vendor | Risk | Clarifying question |
-|--------|------|-----------------|
+| Vendor | Risk | Clarifying Question |
+|---|---|---|
 | Amazon (general) | Could be anything | What was purchased? |
 | Apple (general) | Hardware vs software vs personal | Was this hardware, a software subscription, or a personal purchase? |
 | Costco / Walmart / wholesale clubs | Usually personal | What was purchased and was it exclusively for the business? |
@@ -129,12 +140,12 @@ These vendors appear frequently and are misclassified often. Always ask one clar
 
 ---
 
-## Category to form line mapping
+## Category to Form Line Mapping
 
 Use this table to orient the CPA when handing off the classified output. Category names in the skill are functional, not form-line labels. This mapping shows where each category lands on T2125 (T1 sole proprietor) and on a corporate income statement feeding into T2 Schedule 1.
 
-| Category | T2125 line (T1) | T2 treatment |
-|----------|----------------|--------------|
+| Category | T2125 Line (T1) | T2 Treatment |
+|---|---|---|
 | Cost of goods sold | 8300 (purchases) / 8320 (direct wages) | Cost of sales on income statement |
 | Subcontractors | 8340 | Subcontracts on income statement |
 | Professional fees | 8860 | Professional fees on income statement |
@@ -146,9 +157,12 @@ Use this table to orient the CPA when handing off the classified output. Categor
 | Bank and financing fees | 8710 | Interest and bank charges on income statement |
 | Other business expenses | 9270 (other expenses, itemized) | Other expenses on income statement; CPA reviews each item |
 
-Notes for the CPA:
+**Notes for the CPA:**
 
-- Software and subscriptions has no dedicated T2125 line. Each item is listed individually under other expenses at line 9270. For high-volume contractors this section can be long.
-- Capital purchases do not appear as expenses anywhere on T2125 or the corporate income statement. They enter the CCA schedule. The CPA determines the correct class: Class 10 (general equipment, 30%), Class 50 (computers, 55%), Class 12 (software, 100% in year of acquisition) are the most common for IT contractors.
-- Home office on T2125 flows through the business-use-of-home calculation, which limits the deduction to business income and cannot create a loss. Carry-forward rules apply.
-- Vehicle expenses for a T2 corporation require a standby charge and operating benefit calculation if the vehicle is owned by the corporation and available for personal use. This is separate from the business-use percentage applied on T1.
+Software and subscriptions has no dedicated T2125 line. Each item is listed individually under other expenses at line 9270. For high-volume contractors this section can be long.
+
+Capital purchases do not appear as expenses anywhere on T2125 or the corporate income statement. They enter the CCA schedule. The CPA determines the correct class: Class 10 (general equipment, 30%), Class 50 (computers, 55%), Class 12 (software, 100% in year of acquisition) are the most common for IT contractors.
+
+Home office on T2125 flows through the business-use-of-home calculation, which limits the deduction to business income and cannot create a loss. Carry-forward rules apply.
+
+Vehicle expenses for a T2 corporation require a standby charge and operating benefit calculation if the vehicle is owned by the corporation and available for personal use. This is separate from the business-use percentage applied on T1.
