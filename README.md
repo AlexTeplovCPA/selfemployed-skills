@@ -20,40 +20,30 @@ These workflows organize information provided by the user. They do not verify co
 
 ## How the Skills Work Together
 
-The general skills form a preparation sequence. Run them in order, or run the ones relevant to your situation.
+The skills form a preparation sequence. Run them in order, or run the ones relevant to your situation.
 
-`01-identifying-income-sources` is the starting point. The other skills assume it is complete or in progress.
+`00-collecting-tax-documents` is the starting point. It delivers a complete document checklist before anything else begins, with branching for sole proprietors (T1) and incorporated contractors (T1 and T2). The other skills assume document collection is complete or in progress.
 
-Run `02-checking-gst-hst` early if you are unsure about your registration status or have crossed CAD 30,000 in revenue. Do not leave this for last.
+`01-identifying-income-sources` organizes all income sources for the tax year. Run after documents are collected.
 
-Profession-specific expense classification skills, such as `03-classifying-expenses/it-contractor`, run after the income picture is clear.
+`02-checking-gst-hst` checks registration status, threshold, and remittance. Run early if you are unsure about registration status or have crossed CAD 30,000 in revenue. Do not leave this for last.
 
-`04-preparing-cpa-t1-package` pulls everything together into a personal tax package ready to send to a CPA. It assumes the prior steps are complete or partially complete.
+`03-classifying-expenses` classifies expense transactions into CRA-aligned categories with branching logic for sole proprietors and incorporated contractors. Run after the income picture is clear.
 
-`05-preparing-cpa-t2-package` covers the corporate side for incorporated owner-managers. Run it alongside `04-preparing-cpa-t1-package` when both a T1 and a T2 are being filed in the same engagement.
+`04-preparing-cpa-t1-package` pulls everything together into a personal T1 handoff package ready to send to a CPA. Run after the prior steps are complete or partially complete.
+
+`05-preparing-cpa-t2-package` covers the corporate side for incorporated owner-managers. Run alongside `04-preparing-cpa-t1-package` when both a T1 and a T2 are being filed in the same engagement.
 
 ## Skills
 
-### General Skills
-
-These skills apply to any self-employed Canadian regardless of profession.
-
 | Skill | What It Does | Status |
 |---|---|---|
+| 00-collecting-tax-documents | Delivers a complete document checklist with T1 and T2 branches | Available |
 | 01-identifying-income-sources | Identifies and documents all income sources for the tax year | Available |
 | 02-checking-gst-hst | Checks registration status, threshold, and remittance | Available |
+| 03-classifying-expenses | Classifies IT contractor expenses with CRA-aligned categories | Available |
 | 04-preparing-cpa-t1-package | Builds a personal T1 handoff package ready to send to a CPA | Available |
 | 05-preparing-cpa-t2-package | Builds a corporate T2 handoff package for incorporated owner-managers | Available |
-
-### IT Contractor Skills
-
-Profession-specific skills for IT contractors and consultants.
-
-| Skill | What It Does | Status |
-|---|---|---|
-| 03-classifying-expenses/it-contractor | Classifies IT contractor expenses with CRA-aligned categories | Available |
-
-Additional profession-specific skills for mortgage agents, trades contractors, and real estate professionals are planned for future releases.
 
 ## Installation
 
@@ -78,14 +68,20 @@ Once installed, the agent discovers and loads the relevant skill automatically b
 Example:
 
 ```
-request → "I need to organize my income for my tax return"
-agent loads → 01-identifying-income-sources
-output → structured income summary ready for CPA review
+request → "I need to collect my documents for my tax return"
+agent loads → 00-collecting-tax-documents
+output → complete document checklist with gap summary ready for CPA review
 ```
 
 ## Repository Structure
 
 ```
+00-collecting-tax-documents/
+   SKILL.md
+   references/
+      checklist-t1.md
+      checklist-t2.md
+
 01-identifying-income-sources/
    SKILL.md
 
@@ -93,10 +89,9 @@ output → structured income summary ready for CPA review
    SKILL.md
 
 03-classifying-expenses/
-   it-contractor/
-      SKILL.md
-      references/
-         vendor-categories.md
+   SKILL.md
+   references/
+      vendor-categories.md
 
 04-preparing-cpa-t1-package/
    SKILL.md
@@ -113,8 +108,6 @@ examples/
 ## Related Repositories
 
 **cpa-skills** AI workflow skills for CPAs and bookkeepers. Practitioner-facing workflows for bookkeeping review, T1, T2, client communication, and CRA research.
-
-**ecommerce-skills** Specialized workflows for Canadian e-commerce sellers.
 
 ## About
 
