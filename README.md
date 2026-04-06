@@ -1,116 +1,270 @@
 # it-contractors-skills
 
-AI workflow skills for IT contractors preparing for tax filing or CPA review.
+Client-facing AI workflow skills for Canadian IT contractors and consultants preparing for CPA review.
 
-These skills are built from real practice with IT contractors and consultants in Canada. Each skill runs as a structured conversation: the AI asks questions, reads uploaded documents, fills gaps, and produces organized output ready for a CPA to review.
+This repository is designed for the preparation layer before professional review. The skills help users gather documents, organize income and expenses, identify missing items, surface higher-risk issues for CPA attention, and arrive at the CPA review stage with a cleaner and more structured file.
 
-These skills are a domain-specific extension of cpa-skills.
+These workflows are built from real accounting work with Canadian IT contractors. They do not replace CPA judgment, tax advice, or filing.
+
+## Repository Purpose
+
+This repository is public and client-facing.
+
+Its role is to help IT contractors and consultants prepare their records before working with a CPA. The focus is on structured intake, document organization, issue spotting, and handoff preparation.
+
+This is separate from [**cpa-skills**](https://github.com/alexteplovcpa/cpa-skills), which is practitioner-facing and designed for accountants and bookkeepers.
 
 ## Who This Is For
 
-IT contractors and consultants in Canada who want to organize their tax information before working with a CPA. The skills handle the preparation layer. The CPA handles review, classification, and filing.
+This repository is for:
 
-Practitioners working with IT contractor clients who want a consistent intake workflow before the engagement begins.
+- Canadian IT contractors and consultants who want to organize tax and bookkeeping information before CPA review
+- incorporated and sole proprietor contractors who need a cleaner preparation workflow
+- practitioners who want a more consistent intake structure for IT contractor clients
 
-These skills are not a substitute for professional tax advice or CPA review. They organize what you have. A CPA validates and completes it.
+These skills organize what the user provides. A CPA reviews the file, confirms tax treatment, identifies what is missing, and completes the return.
 
 ## Disclosure
 
-These workflows organize information provided by the user. They do not verify completeness or accuracy, provide tax advice, or create a professional relationship of any kind. Use of these skills does not replace a review by a qualified CPA before filing.
+These workflows organize information provided by the user. They do not verify completeness or accuracy, provide tax advice, determine final tax treatment, or create a professional relationship of any kind. Use of these skills does not replace review by a qualified CPA before filing.
 
-## How the Skills Work Together
+## How the Repository Is Structured
 
-The skills form a preparation sequence. Run them in order, or run the ones relevant to your situation.
+The repository is organized by workflow stage.
 
-`00-collecting-tax-documents` is the starting point. It delivers a complete document checklist before anything else begins, with branching for sole proprietors (T1) and incorporated contractors (T1 and T2). The other skills assume document collection is complete or in progress.
+### 1. Intake
+These skills help the user gather records and clean up the initial file before deeper review begins.
 
-`01-identifying-income-sources` organizes all income sources for the tax year. Run after documents are collected.
+### 2. Income and Compliance
+These skills organize income records, GST/HST context, and foreign client support.
 
-`02-checking-gst-hst` checks registration status, threshold, and remittance. Run early if you are unsure about registration status or have crossed CAD 30,000 in revenue. Do not leave this for last.
+### 3. Expense and Support
+These skills classify expenses and collect support for common deduction areas such as home office and vehicle use.
 
-`03-classifying-expenses` classifies expense transactions into CRA-aligned categories with branching logic for sole proprietors and incorporated contractors. Run after the income picture is clear.
+### 4. Incorporated Contractor Risk Areas
+These skills focus on the issues that commonly require closer CPA attention in incorporated contractor files, including PSB screening, shareholder transactions, and owner compensation records.
 
-`04-preparing-cpa-t1-package` pulls everything together into a personal T1 handoff package ready to send to a CPA. Run after the prior steps are complete or partially complete.
+### 5. Handoff
+These skills assemble CPA-ready summaries and determine whether the file is ready for intake.
 
-`05-preparing-cpa-t2-package` covers the corporate side for incorporated owner-managers. Run alongside `04-preparing-cpa-t1-package` when both a T1 and a T2 are being filed in the same engagement.
+## Current Skill Map
 
-## Skills
+### Intake
 
-| Skill | What It Does | Status |
-|---|---|---|
-| 00-collecting-tax-documents | Delivers a complete document checklist with T1 and T2 branches | Available |
-| 01-identifying-income-sources | Identifies and documents all income sources for the tax year | Available |
-| 02-checking-gst-hst | Checks registration status, threshold, and remittance | Available |
-| 03-classifying-expenses | Classifies IT contractor expenses with CRA-aligned categories | Available |
-| 04-preparing-cpa-t1-package | Builds a personal T1 handoff package ready to send to a CPA | Available |
-| 05-preparing-cpa-t2-package | Builds a corporate T2 handoff package for incorporated owner-managers | Available |
+- `collecting-tax-documents-it-contractors`
+- `normalizing-it-contractor-uploads`
 
-## Installation
+### Income and Compliance
 
-**Claude (claude.ai):**
+- `identifying-income-sources-it-contractors`
+- `checking-contractor-gst-hst-threshold-support`
+- `collecting-foreign-client-income-support`
+- `reconciling-contractor-income-to-deposits`
 
-1. Download or clone this repository
-2. Zip the skill folder you want to install
-3. Go to Settings > Capabilities > Skills > Upload skill
+### Expense and Support
 
-**Claude Code:** Place the skill folder in `~/.claude/skills/`
+- `classifying-expenses-it-contractors`
+- `collecting-home-office-support-it-contractors`
+- `collecting-vehicle-support-it-contractors`
 
-**OpenAI Codex:** Place the skill folder in `~/.agents/skills/`
+### Incorporated Contractor Risk Areas
 
-**Google Gemini CLI:** Place the skill folder in `~/.gemini/skills/` or `~/.agents/skills/`
+- `screening-psb-risk`
+- `reviewing-shareholder-transactions-it-contractors`
+- `collecting-owner-compensation-records`
 
-These skills follow the open Agent Skills standard and are tested primarily on Claude. Results may vary on other tools.
+### Handoff
 
-## How to Use a Skill
+- `preparing-cpa-t1-package-it-contractors`
+- `preparing-cpa-t2-package-it-contractors`
+- `validating-it-contractor-readiness`
 
-Once installed, the agent discovers and loads the relevant skill automatically based on your request. You do not need to invoke it manually.
+## What the Skills Are Designed to Do
 
-Example:
+These skills are designed to:
 
-```
-request → "I need to collect my documents for my tax return"
-agent loads → 00-collecting-tax-documents
-output → complete document checklist with gap summary ready for CPA review
-```
+- collect and organize tax and bookkeeping records
+- turn messy client information into structured summaries
+- identify missing documents and unresolved items
+- flag higher-risk issues for CPA review
+- improve the quality of the handoff into professional review
 
-## Repository Structure
+They are not designed to:
 
-```
-00-collecting-tax-documents/
-   SKILL.md
-   references/
+- replace a CPA
+- determine final filing positions
+- provide legal or tax advice
+- file returns
+- resolve technical tax issues without review
+
+## Planned Repository Structure
+
+```text
+skills/
+  collecting-tax-documents-it-contractors/
+    SKILL.md
+    agents/
+      openai.yaml
+    references/
       checklist-t1.md
       checklist-t2.md
 
-01-identifying-income-sources/
-   SKILL.md
+  normalizing-it-contractor-uploads/
+    SKILL.md
+    agents/
+      openai.yaml
 
-02-checking-gst-hst/
-   SKILL.md
+  identifying-income-sources-it-contractors/
+    SKILL.md
+    agents/
+      openai.yaml
 
-03-classifying-expenses/
-   SKILL.md
-   references/
+  checking-contractor-gst-hst-threshold-support/
+    SKILL.md
+    agents/
+      openai.yaml
+
+  collecting-foreign-client-income-support/
+    SKILL.md
+    agents/
+      openai.yaml
+
+  reconciling-contractor-income-to-deposits/
+    SKILL.md
+    agents/
+      openai.yaml
+
+  classifying-expenses-it-contractors/
+    SKILL.md
+    agents/
+      openai.yaml
+    references/
       vendor-categories.md
 
-04-preparing-cpa-t1-package/
-   SKILL.md
+  collecting-home-office-support-it-contractors/
+    SKILL.md
+    agents/
+      openai.yaml
 
-05-preparing-cpa-t2-package/
-   SKILL.md
+  collecting-vehicle-support-it-contractors/
+    SKILL.md
+    agents/
+      openai.yaml
+
+  screening-psb-risk/
+    SKILL.md
+    agents/
+      openai.yaml
+
+  reviewing-shareholder-transactions-it-contractors/
+    SKILL.md
+    agents/
+      openai.yaml
+
+  collecting-owner-compensation-records/
+    SKILL.md
+    agents/
+      openai.yaml
+
+  preparing-cpa-t1-package-it-contractors/
+    SKILL.md
+    agents/
+      openai.yaml
+
+  preparing-cpa-t2-package-it-contractors/
+    SKILL.md
+    agents/
+      openai.yaml
+
+  validating-it-contractor-readiness/
+    SKILL.md
+    agents/
+      openai.yaml
+
+docs/
+  repo-scope.md
+  writing-rules.md
 
 examples/
-   income-summary.csv
-   expense-log.csv
-   gst-hst-records.csv
+  income-summary.csv
+  expense-log.csv
+  gst-hst-records.csv
+  t1-package/
+  t2-package/
+```
+
+## Installation
+
+### Claude (claude.ai)
+1. Download or clone this repository
+2. Zip the individual skill folder you want to install
+3. Go to Settings → Capabilities → Skills
+4. Upload the skill ZIP
+
+### Claude Code
+Place the skill folder in:
+
+```text
+~/.claude/skills/
+```
+
+### OpenAI Codex
+Place the skill folder in:
+
+```text
+~/.agents/skills/
+```
+
+### Google Gemini CLI
+Place the skill folder in one of:
+
+```text
+~/.gemini/skills/
+~/.agents/skills/
+```
+
+These skills follow an open agent-skill style structure and are being developed primarily around Claude-style workflows. Behavior may vary across tools.
+
+## How to Use the Repository
+
+A user does not need to run every skill.
+
+A typical path might look like this:
+
+1. collect documents  
+2. normalize uploads  
+3. identify income sources  
+4. review GST/HST context if relevant  
+5. classify expenses  
+6. collect additional support for home office, vehicle, or foreign client income if needed  
+7. review incorporated contractor risk areas where relevant  
+8. prepare the T1 package, T2 package, or both  
+9. validate readiness before CPA intake  
+
+## Example Workflow
+
+```text
+request: I need to get my IT contractor tax information ready for my CPA
+skills used:
+- collecting-tax-documents-it-contractors
+- identifying-income-sources-it-contractors
+- classifying-expenses-it-contractors
+- preparing-cpa-t1-package-it-contractors
+
+output:
+- organized summaries
+- missing item list
+- CPA question list
+- handoff package for review
 ```
 
 ## Related Repositories
 
-**cpa-skills** AI workflow skills for CPAs and bookkeepers. Practitioner-facing workflows for bookkeeping review, T1, T2, client communication, and CRA research.
+- [**cpa-skills**](https://github.com/alexteplovcpa/cpa-skills) — Practice-tested AI workflow skills for CPAs and bookkeepers.
+- [**ecommerce-skills**](https://github.com/alexteplovcpa/ecommerce-skills) — Accounting workflows for Canadian e-commerce sellers.
 
 ## About
 
 Built by [Alex Teplov, CPA](https://www.linkedin.com/in/alex-teplov/).
 
-I run two specialized accounting practices in Canada and build these workflows from operational problems encountered in real practice.
+This repository is part of a broader effort to build practical, profession-grounded AI workflow libraries for accounting work in Canada, with separate repositories for client-facing preparation workflows and practitioner-facing CPA workflows.
