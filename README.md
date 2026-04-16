@@ -180,10 +180,10 @@ After that, the next build set includes:
 
 Later expansion may include:
 
-- `t2125-travel`
-- `t2125-motor-vehicle-expenses`
-- `t2125-legal-accounting-and-professional-fees`
-- `t2125-subcontractors-and-fees`
+- `organizing-t2125-travel`
+- `organizing-t2125-motor-vehicle-expenses`
+- `organizing-t2125-legal-accounting-and-professional-fees`
+- `organizing-t2125-subcontractors-and-fees`
 - `reviewing-other-income-and-reimbursements`
 - `reviewing-psb-risk-facts`
 - `checking-shareholder-or-corporate-leakage`
@@ -271,9 +271,13 @@ docs/
   writing-rules.md
 
 examples/
-  income-summary.csv
-  expense-log.csv
-  gst-hst-records.csv
+  inputs/
+    income-summary.csv
+    expense-log.csv
+    gst-hst-records.csv
+  outputs/
+    self-entry-summary-example.md
+    missing-items-summary-example.md
 ```
 
 Platform-specific files such as `agents/openai.yaml` are optional and may be added later for distribution needs. They are not part of the default repository structure.
@@ -330,8 +334,8 @@ Use of these workflows does not replace review by a qualified CPA before filing.
 
 ## Related Repositories
 
-- `cpa-skills` — practitioner-facing workflows for CPAs and bookkeepers
-- `ecommerce-skills` — client-facing workflows for Canadian e-commerce sellers
+- [`cpa-skills`](https://github.com/AlexTeplovCPA/cpa-skills) — practitioner-facing workflows for CPAs and bookkeepers
+- [`ecommerce-skills`](https://github.com/AlexTeplovCPA/ecommerce-skills) — client-facing workflows for Canadian e-commerce sellers
 
 ---
 
@@ -348,3 +352,7 @@ These workflows are built from real accounting practice. If you adapt or use the
 Built by [Alex Teplov, CPA](https://teplov.ca).
 
 Specialized accounting practices in Canada focused on IT contractors and e-commerce sellers. These workflows are built from real operational bottlenecks encountered in practice.
+
+- [teplov.ca](https://teplov.ca/) — IT contractor tax practice
+- [ecomcount.com](https://ecomcount.com/) — e-commerce seller tax practice
+- [LinkedIn](https://www.linkedin.com/in/alex-teplov)
