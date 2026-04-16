@@ -91,10 +91,10 @@ These review one field or one tightly related bucket at a time.
 
 Examples:
 
-- `t2125-gross-business-income`
-- `t2125-8523-meals-and-entertainment`
-- `t2125-business-use-of-home`
-- `t2125-capital-assets-and-cca`
+- `organizing-t2125-gross-business-income`
+- `organizing-t2125-8523-meals-and-entertainment`
+- `organizing-t2125-business-use-of-home`
+- `organizing-t2125-capital-assets-and-cca`
 
 ### 3. Cross-cutting risk skills
 
@@ -113,9 +113,9 @@ These assemble prior results into a user-facing deliverable.
 
 Examples:
 
-- `generate-self-entry-summary`
-- `generate-cpa-handoff-summary`
-- `generate-missing-items-summary`
+- `generating-self-entry-summary`
+- `generating-cpa-handoff-summary`
+- `generating-missing-items-summary`
 
 ---
 
@@ -160,11 +160,11 @@ The first working chain is:
 1. `collecting-tax-documents`
 2. `identifying-income-sources`
 3. `identifying-expense-categories`
-4. `t2125-gross-business-income`
-5. `t2125-routine-operating-expenses`
-6. `t2125-8523-meals-and-entertainment`
-7. `generate-self-entry-summary`
-8. `generate-missing-items-summary`
+4. `organizing-t2125-gross-business-income`
+5. `organizing-t2125-routine-operating-expenses`
+6. `organizing-t2125-8523-meals-and-entertainment`
+7. `generating-self-entry-summary`
+8. `generating-missing-items-summary`
 
 This is the first end-to-end path the repository is designed to support.
 
@@ -173,10 +173,10 @@ After that, the next build set includes:
 - `checking-gst-hst`
 - `reviewing-foreign-platform-and-us-income`
 - `reviewing-instalments-and-tax-payments`
-- `t2125-business-use-of-home`
-- `t2125-capital-assets-and-cca`
-- `t2125-other-expenses-review`
-- `generate-cpa-handoff-summary`
+- `organizing-t2125-business-use-of-home`
+- `organizing-t2125-capital-assets-and-cca`
+- `organizing-t2125-other-expenses`
+- `generating-cpa-handoff-summary`
 
 Later expansion may include:
 
@@ -209,22 +209,22 @@ skills/
     references/
       vendor-categories.md
 
-  t2125-gross-business-income/
+  organizing-t2125-gross-business-income/
     SKILL.md
 
-  t2125-routine-operating-expenses/
+  organizing-t2125-routine-operating-expenses/
     SKILL.md
 
-  t2125-8523-meals-and-entertainment/
+  organizing-t2125-8523-meals-and-entertainment/
     SKILL.md
 
-  t2125-business-use-of-home/
+  organizing-t2125-business-use-of-home/
     SKILL.md
 
-  t2125-capital-assets-and-cca/
+  organizing-t2125-capital-assets-and-cca/
     SKILL.md
 
-  t2125-other-expenses-review/
+  organizing-t2125-other-expenses/
     SKILL.md
 
   checking-gst-hst/
@@ -245,17 +245,17 @@ skills/
   reviewing-reasonableness-of-net-income/
     SKILL.md
 
-  generate-self-entry-summary/
+  generating-self-entry-summary/
     SKILL.md
     references/
       grouped-by-form-template.md
 
-  generate-cpa-handoff-summary/
+  generating-cpa-handoff-summary/
     SKILL.md
     references/
       cpa-handoff-template.md
 
-  generate-missing-items-summary/
+  generating-missing-items-summary/
     SKILL.md
     references/
       missing-items-template.md
@@ -296,7 +296,7 @@ Another example:
 
 ```
 request → "I had client meals and need to know where they belong"
-agent loads → t2125-8523-meals-and-entertainment
+agent loads → organizing-t2125-8523-meals-and-entertainment
 output → field mapping, open questions, and caution notes
 ```
 

@@ -1,5 +1,5 @@
 ---
-name: t2125-routine-operating-expenses
+name: organizing-organizing-t2125-routine-operating-expenses
 description: organize likely routine operating expenses for form t2125 for a canadian it contractor. use when the user needs to group recurring business expenses into practical t2125 expense buckets, separate routine operating costs from meals, home office, travel, vehicle, or possible capital items, or prepare a structured summary for self-entry or cpa handoff after expense categories have already been identified.
 ---
 
@@ -182,12 +182,12 @@ Based on the provisional routine operating expense result, indicate likely downs
 
 Common downstream uses:
 
-- `t2125-8523-meals-and-entertainment`
-- `t2125-business-use-of-home`
-- `t2125-capital-assets-and-cca`
-- `t2125-other-expenses-review`
-- `generate-self-entry-summary`
-- `generate-cpa-handoff-summary`
+- `organizing-t2125-8523-meals-and-entertainment`
+- `organizing-t2125-business-use-of-home`
+- `organizing-t2125-capital-assets-and-cca`
+- `organizing-t2125-other-expenses`
+- `generating-self-entry-summary`
+- `generating-cpa-handoff-summary`
 
 Do not run those workflows inside this skill.
 
@@ -340,9 +340,9 @@ Use plain language. Keep it short and practical.
 
 This skill may feed:
 
-- `t2125-8523-meals-and-entertainment`
-- `t2125-business-use-of-home`
-- `t2125-capital-assets-and-cca`
-- `t2125-other-expenses-review`
-- `generate-self-entry-summary`
-- `generate-cpa-handoff-summary`
+- `organizing-t2125-8523-meals-and-entertainment`
+- `organizing-t2125-business-use-of-home`
+- `organizing-t2125-capital-assets-and-cca`
+- `organizing-t2125-other-expenses`
+- `generating-self-entry-summary`
+- `generating-cpa-handoff-summary`

@@ -168,12 +168,12 @@ Based on the organized income picture, indicate which downstream skills are like
 
 Common downstream uses:
 
-- `t2125-gross-business-income`
+- `organizing-t2125-gross-business-income`
 - `checking-gst-hst`
 - `reviewing-foreign-platform-and-us-income`
 - `reviewing-instalments-and-tax-payments`
-- `generate-self-entry-summary`
-- `generate-cpa-handoff-summary`
+- `generating-self-entry-summary`
+- `generating-cpa-handoff-summary`
 
 Do not perform those workflows here.  
 Only prepare the income side of the file for them.
@@ -326,9 +326,9 @@ Use plain language. Keep it short and practical.
 
 This skill may feed:
 
-- `t2125-gross-business-income`
+- `organizing-t2125-gross-business-income`
 - `checking-gst-hst`
 - `reviewing-foreign-platform-and-us-income`
 - `reviewing-instalments-and-tax-payments`
-- `generate-self-entry-summary`
-- `generate-cpa-handoff-summary`
+- `generating-self-entry-summary`
+- `generating-cpa-handoff-summary`

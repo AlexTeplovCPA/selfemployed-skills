@@ -162,13 +162,13 @@ Based on the organized expense picture, indicate which downstream skills are lik
 
 Common downstream uses:
 
-- `t2125-routine-operating-expenses`
-- `t2125-8523-meals-and-entertainment`
-- `t2125-business-use-of-home`
-- `t2125-capital-assets-and-cca`
-- `t2125-other-expenses-review`
-- `generate-self-entry-summary`
-- `generate-cpa-handoff-summary`
+- `organizing-t2125-routine-operating-expenses`
+- `organizing-t2125-8523-meals-and-entertainment`
+- `organizing-t2125-business-use-of-home`
+- `organizing-t2125-capital-assets-and-cca`
+- `organizing-t2125-other-expenses`
+- `generating-self-entry-summary`
+- `generating-cpa-handoff-summary`
 
 Do not run downstream logic inside this skill.  
 Only prepare the expense side of the file for later review.
@@ -326,10 +326,10 @@ Use plain language. Keep it short and practical.
 
 This skill may feed:
 
-- `t2125-routine-operating-expenses`
-- `t2125-8523-meals-and-entertainment`
-- `t2125-business-use-of-home`
-- `t2125-capital-assets-and-cca`
-- `t2125-other-expenses-review`
-- `generate-self-entry-summary`
-- `generate-cpa-handoff-summary`
+- `organizing-t2125-routine-operating-expenses`
+- `organizing-t2125-8523-meals-and-entertainment`
+- `organizing-t2125-business-use-of-home`
+- `organizing-t2125-capital-assets-and-cca`
+- `organizing-t2125-other-expenses`
+- `generating-self-entry-summary`
+- `generating-cpa-handoff-summary`

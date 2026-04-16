@@ -89,10 +89,10 @@ Examples:
 These review one field or one tightly related bucket at a time.
 
 Examples:
-- t2125-gross-business-income
-- t2125-8523-meals-and-entertainment
-- t2125-business-use-of-home
-- t2125-capital-assets-and-cca
+- organizing-t2125-gross-business-income
+- organizing-t2125-8523-meals-and-entertainment
+- organizing-t2125-business-use-of-home
+- organizing-t2125-capital-assets-and-cca
 
 ### Cross-cutting risk skills
 These handle issues that affect more than one field or form.
@@ -107,9 +107,9 @@ Examples:
 These assemble prior results into a user-facing deliverable.
 
 Examples:
-- generate-self-entry-summary
-- generate-cpa-handoff-summary
-- generate-missing-items-summary
+- generating-self-entry-summary
+- generating-cpa-handoff-summary
+- generating-missing-items-summary
 
 ---
 

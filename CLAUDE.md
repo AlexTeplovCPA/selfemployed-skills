@@ -77,10 +77,10 @@ Map specific fields or expense buckets.
 
 Examples:
 
-- t2125-gross-business-income
-- t2125-8523-meals-and-entertainment
-- t2125-business-use-of-home
-- t2125-capital-assets-and-cca
+- organizing-t2125-gross-business-income
+- organizing-t2125-8523-meals-and-entertainment
+- organizing-t2125-business-use-of-home
+- organizing-t2125-capital-assets-and-cca
 
 ### Cross-cutting risk skills
 
@@ -99,9 +99,9 @@ Assemble user-facing outputs.
 
 Examples:
 
-- generate-self-entry-summary
-- generate-cpa-handoff-summary
-- generate-missing-items-summary
+- generating-self-entry-summary
+- generating-cpa-handoff-summary
+- generating-missing-items-summary
 
 ---
 
@@ -155,22 +155,22 @@ skills/
     references/
       vendor-categories.md
 
-  t2125-gross-business-income/
+  organizing-t2125-gross-business-income/
     SKILL.md
 
-  t2125-routine-operating-expenses/
+  organizing-t2125-routine-operating-expenses/
     SKILL.md
 
-  t2125-8523-meals-and-entertainment/
+  organizing-t2125-8523-meals-and-entertainment/
     SKILL.md
 
-  t2125-business-use-of-home/
+  organizing-t2125-business-use-of-home/
     SKILL.md
 
-  t2125-capital-assets-and-cca/
+  organizing-t2125-capital-assets-and-cca/
     SKILL.md
 
-  t2125-other-expenses-review/
+  organizing-t2125-other-expenses/
     SKILL.md
 
   checking-gst-hst/
@@ -191,17 +191,17 @@ skills/
   reviewing-reasonableness-of-net-income/
     SKILL.md
 
-  generate-self-entry-summary/
+  generating-self-entry-summary/
     SKILL.md
     references/
       grouped-by-form-template.md
 
-  generate-cpa-handoff-summary/
+  generating-cpa-handoff-summary/
     SKILL.md
     references/
       cpa-handoff-template.md
 
-  generate-missing-items-summary/
+  generating-missing-items-summary/
     SKILL.md
     references/
       missing-items-template.md
@@ -217,9 +217,13 @@ docs/
   writing-rules.md
 
 examples/
-  income-summary.csv
-  expense-log.csv
-  gst-hst-records.csv
+  inputs/
+    income-summary.csv
+    expense-log.csv
+    gst-hst-records.csv
+  outputs/
+    self-entry-summary-example.md
+    missing-items-summary-example.md
 ```
 
 ---
@@ -242,10 +246,10 @@ Examples:
 
 - collecting-tax-documents
 - identifying-income-sources
-- t2125-gross-business-income
-- t2125-8523-meals-and-entertainment
+- organizing-t2125-gross-business-income
+- organizing-t2125-8523-meals-and-entertainment
 - checking-gst-hst
-- generate-self-entry-summary
+- generating-self-entry-summary
 
 Avoid:
 
@@ -412,11 +416,11 @@ Start with this chain:
 1. collecting-tax-documents
 2. identifying-income-sources
 3. identifying-expense-categories
-4. t2125-gross-business-income
-5. t2125-routine-operating-expenses
-6. t2125-8523-meals-and-entertainment
-7. generate-self-entry-summary
-8. generate-missing-items-summary
+4. organizing-t2125-gross-business-income
+5. organizing-t2125-routine-operating-expenses
+6. organizing-t2125-8523-meals-and-entertainment
+7. generating-self-entry-summary
+8. generating-missing-items-summary
 
 Only expand after this works.
 

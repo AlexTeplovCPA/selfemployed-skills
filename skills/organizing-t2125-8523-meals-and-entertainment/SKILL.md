@@ -1,5 +1,5 @@
 ---
-name: t2125-8523-meals-and-entertainment
+name: organizing-organizing-t2125-8523-meals-and-entertainment
 description: organize likely meals and entertainment expenses for line 8523 of form t2125 for a canadian it contractor. use when the user needs to review restaurant, coffee meeting, client meal, or similar expenses, separate likely business meals from personal or unclear charges, or prepare a structured summary for self-entry or cpa handoff after expense categories have already been identified.
 ---
 
@@ -172,9 +172,9 @@ Based on the provisional line 8523 result, indicate likely downstream uses.
 
 Common downstream uses:
 
-- `generate-self-entry-summary`
-- `generate-cpa-handoff-summary`
-- `generate-missing-items-summary`
+- `generating-self-entry-summary`
+- `generating-cpa-handoff-summary`
+- `generating-missing-items-summary`
 
 Do not run those workflows inside this skill.
 
@@ -329,6 +329,6 @@ Use plain language. Keep it short and practical.
 
 This skill may feed:
 
-- `generate-self-entry-summary`
-- `generate-cpa-handoff-summary`
-- `generate-missing-items-summary`
+- `generating-self-entry-summary`
+- `generating-cpa-handoff-summary`
+- `generating-missing-items-summary`

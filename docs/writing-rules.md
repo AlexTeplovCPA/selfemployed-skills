@@ -422,7 +422,7 @@ Prefer names that reflect function and scope.
 Good:
 - `collecting-tax-documents`
 - `identifying-income-sources`
-- `t2125-8523-meals-and-entertainment`
+- `organizing-t2125-8523-meals-and-entertainment`
 
 Avoid:
 - alternate short forms in different files
@@ -438,8 +438,8 @@ Do not rewrite shared schema definitions inside every skill.
 If a skill relies on shared structures, reference the shared files.
 
 Use:
-- `../../references/shared-input-schema.md`
-- `../../references/shared-output-schema.md`
+- `../references/shared-input-schema.md`
+- `../references/shared-output-schema.md`
 
 Do not create slightly different local copies unless there is a real need.
 
@@ -471,7 +471,7 @@ Use:
 
 Good commit messages:
 - Add collecting-tax-documents skill
-- Refine output wording in generate-self-entry-summary
+- Refine output wording in generating-self-entry-summary
 - Add shared output schema reference
 
 Avoid:

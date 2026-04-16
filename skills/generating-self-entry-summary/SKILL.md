@@ -1,5 +1,5 @@
 ---
-name: generate-self-entry-summary
+name: generating-self-entry-summary
 description: generate a grouped-by-form self-entry summary for a canadian it contractor after income, expenses, and supporting facts have been organized. use when the user wants a plain-language summary for tax software entry, needs amounts grouped by t1 and t2125 areas, or wants to see which items are ready, unclear, or still require review before entering them.
 ---
 
@@ -62,12 +62,12 @@ Read from prior skill outputs where available, especially:
 - `collecting-tax-documents`
 - `identifying-income-sources`
 - `identifying-expense-categories`
-- `t2125-gross-business-income`
-- `t2125-routine-operating-expenses`
-- `t2125-8523-meals-and-entertainment`
-- `t2125-business-use-of-home`
-- `t2125-capital-assets-and-cca`
-- `t2125-other-expenses-review`
+- `organizing-t2125-gross-business-income`
+- `organizing-t2125-routine-operating-expenses`
+- `organizing-t2125-8523-meals-and-entertainment`
+- `organizing-t2125-business-use-of-home`
+- `organizing-t2125-capital-assets-and-cca`
+- `organizing-t2125-other-expenses`
 - `checking-gst-hst`
 - `reviewing-foreign-platform-and-us-income`
 - `reviewing-instalments-and-tax-payments`
@@ -91,7 +91,7 @@ Use this skill when the user wants:
 - a plain-language view of what appears ready and what does not
 - a combined view of mapped fields and unresolved items
 
-If the user actually needs a practitioner-facing handoff package instead, route to `generate-cpa-handoff-summary`.
+If the user actually needs a practitioner-facing handoff package instead, route to `generating-cpa-handoff-summary`.
 
 ### 2. Gather prior mapped results
 

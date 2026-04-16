@@ -40,7 +40,7 @@ skill_result:
 The skill identifier.
 
 ```yaml
-skill_name: "t2125-8523-meals-and-entertainment"
+skill_name: "organizing-t2125-8523-meals-and-entertainment"
 ```
 
 ### skill_version
@@ -233,8 +233,8 @@ What later skills may need to use.
 ```yaml
 downstream_effects:
   triggers:
-    - "generate-self-entry-summary"
-    - "generate-missing-items-summary"
+    - "generating-self-entry-summary"
+    - "generating-missing-items-summary"
   affected_forms:
     - "T2125"
   affected_fields:

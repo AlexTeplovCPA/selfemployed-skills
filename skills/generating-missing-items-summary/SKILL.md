@@ -1,5 +1,5 @@
 ---
-name: generate-missing-items-summary
+name: generating-missing-items-summary
 description: generate a focused missing-items and open-questions summary for a canadian it contractor after income, expenses, documents, and review issues have been organized. use when the user needs a short list of missing records, unanswered questions, and blocking issues before self-entry or cpa handoff.
 ---
 
@@ -60,17 +60,17 @@ Read from prior skill outputs where available, especially:
 - `collecting-tax-documents`
 - `identifying-income-sources`
 - `identifying-expense-categories`
-- `t2125-gross-business-income`
-- `t2125-routine-operating-expenses`
-- `t2125-8523-meals-and-entertainment`
-- `t2125-business-use-of-home`
-- `t2125-capital-assets-and-cca`
-- `t2125-other-expenses-review`
+- `organizing-t2125-gross-business-income`
+- `organizing-t2125-routine-operating-expenses`
+- `organizing-t2125-8523-meals-and-entertainment`
+- `organizing-t2125-business-use-of-home`
+- `organizing-t2125-capital-assets-and-cca`
+- `organizing-t2125-other-expenses`
 - `checking-gst-hst`
 - `reviewing-foreign-platform-and-us-income`
 - `reviewing-instalments-and-tax-payments`
-- `generate-self-entry-summary`
-- `generate-cpa-handoff-summary`
+- `generating-self-entry-summary`
+- `generating-cpa-handoff-summary`
 
 See:
 - `../../references/shared-input-schema.md`
@@ -88,7 +88,7 @@ Use this skill when the user needs:
 - a short explanation of what still blocks progress
 - a practical checklist before self-entry or CPA handoff
 
-If the user actually needs a grouped-by-form entry summary, route to `generate-self-entry-summary`.
+If the user actually needs a grouped-by-form entry summary, route to `generating-self-entry-summary`.
 
 ### 2. Gather unresolved items from prior results
 

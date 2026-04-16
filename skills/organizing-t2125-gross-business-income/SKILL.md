@@ -1,5 +1,5 @@
 ---
-name: t2125-gross-business-income
+name: organizing-organizing-t2125-gross-business-income
 description: organize likely gross business income for form t2125 for a canadian it contractor. use when the user needs to map business income sources into the main t2125 income area, separate likely business income from employment or other amounts, or prepare a grouped summary for self-entry or cpa handoff after income sources have already been identified.
 ---
 
@@ -180,8 +180,8 @@ Common downstream uses:
 
 - `checking-gst-hst`
 - `reviewing-foreign-platform-and-us-income`
-- `generate-self-entry-summary`
-- `generate-cpa-handoff-summary`
+- `generating-self-entry-summary`
+- `generating-cpa-handoff-summary`
 
 Do not run those workflows inside this skill.
 
@@ -335,5 +335,5 @@ This skill may feed:
 
 - `checking-gst-hst`
 - `reviewing-foreign-platform-and-us-income`
-- `generate-self-entry-summary`
-- `generate-cpa-handoff-summary`
+- `generating-self-entry-summary`
+- `generating-cpa-handoff-summary`

@@ -139,8 +139,8 @@ Common downstream uses:
 - `identifying-expense-categories`
 - `checking-gst-hst`
 - `reviewing-instalments-and-tax-payments`
-- `generate-self-entry-summary`
-- `generate-cpa-handoff-summary`
+- `generating-self-entry-summary`
+- `generating-cpa-handoff-summary`
 
 Do not perform downstream logic inside this skill.  
 Only prepare the file.
@@ -275,8 +275,8 @@ This skill may feed:
 - `identifying-expense-categories`
 - `checking-gst-hst`
 - `reviewing-instalments-and-tax-payments`
-- `generate-self-entry-summary`
-- `generate-cpa-handoff-summary`
+- `generating-self-entry-summary`
+- `generating-cpa-handoff-summary`
 
 ## References
 
