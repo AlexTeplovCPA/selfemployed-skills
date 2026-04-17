@@ -1,35 +1,37 @@
 ---
-name: organizing-organizing-t2125-gross-business-income
-description: organize likely gross business income for form t2125 for a canadian it contractor. use when the user needs to map business income sources into the main t2125 income area, separate likely business income from employment or other amounts, or prepare a grouped summary for self-entry or cpa handoff after income sources have already been identified.
+name: organizing-t2125-gross-business-income
+description: Organize likely gross business income for form T2125 for a Canadian IT contractor after income sources have already been identified. Use when the user needs to map business income sources into the T2125 gross income area, separate likely business income from employment or other amounts, or prepare a grouped mapping for self-entry or CPA handoff. Accepts prior skill output, income summaries, T4A slips, bookkeeping exports, and platform summaries. Produces a provisional T2125 income mapping with support strength, flags, and downstream routing.
+metadata:
+    author: Teplov CPA
+    version: 1.0
+    updated: 2026-04-17
 ---
 
 # T2125 Gross Business Income
 
-## Purpose
-
-Organize likely gross business income for T2125 after the income sources have already been identified.
-
-This skill takes the organized income picture, groups the amounts that appear to relate to self-employed business activity, and prepares a structured mapping for downstream summaries.
-
-This skill organizes information provided by the user. It does not verify completeness or accuracy.
-
-> Do not type your SIN, business number, account numbers, or client names into this conversation. Use general descriptions and rounded amounts where possible. If uploading tax slips, screenshots, or income summaries, redact sensitive identifiers first. Avoid sharing sensitive information you would not be comfortable storing in a third-party system.
+Organize likely gross business income for T2125 after income sources have already been identified.
 
 ## Core Rules
 
-- work from identified income sources, not from vague assumptions
-- focus on likely business income that may belong in T2125 gross income
-- separate business income from employment income, reimbursements, and unclear amounts where possible
-- preserve uncertainty where support is incomplete or classification is mixed
-- organize and flag, do not advise
-- do not determine final filing positions
-- do not conclude employment status or PSB status
-- do not determine final GST/HST treatment
-- do not finalize foreign currency conversion methodology if the records are incomplete
+- Work from identified income sources, not from vague assumptions.
+- Focus on likely business income that may belong in T2125 gross income.
+- Separate business income from employment income, reimbursements, and unclear amounts where possible.
+- Preserve uncertainty where support is incomplete or classification is mixed.
+- Organize and flag, do not advise.
+- Do not determine final filing positions.
+- Do not conclude employment status or PSB status.
+- Do not determine final GST/HST treatment.
+- Do not finalize foreign currency conversion methodology if records are incomplete.
+- Do not treat all T4A amounts as automatically belonging in T2125.
+- Do not treat all deposits as business income.
+- Do not state that the user is ready to file.
+- Use this phrase where relevant: "That is outside what this workflow covers. It is a question for a CPA before you file."
 
-## Inputs This Skill Can Accept
+## Inputs
 
-Prefer any of the following:
+Do not ask the user to share SIN, business number, account numbers, or client names. Use general descriptions and rounded amounts.
+
+Accept any of:
 
 - output from `identifying-income-sources`
 - income summary spreadsheet
@@ -46,37 +48,15 @@ Minimum useful input:
 - some indication of whether the source appears business-related
 - some support or explanation for the amount
 
-## Internal Input Fields to Read
+Read from the shared input schema where available: `case_id`, `tax_year`, `engagement_mode`, `user_profile`, `facts.business_activity`, `facts.income_channels`, `facts.slips_received`, `facts.foreign_income`, `documents.slips`, `documents.summaries`, `transactions.income_items`, `form_context`, `review_state`.
 
-Read from the shared input schema where available:
-
-- `case_id`
-- `tax_year`
-- `engagement_mode`
-- `user_profile`
-- `facts.business_activity`
-- `facts.income_channels`
-- `facts.slips_received`
-- `facts.foreign_income`
-- `documents.slips`
-- `documents.summaries`
-- `transactions.income_items`
-- `form_context`
-- `review_state`
-
-Read from prior skill outputs where available:
-
-- `identifying-income-sources`
-
-See:
-- `../../references/shared-input-schema.md`
-- `../../references/shared-output-schema.md`
+Read from prior skill outputs where available: `identifying-income-sources`.
 
 ## Workflow
 
 ### 1. Confirm that T2125 business income is relevant
 
-Check whether the available facts suggest self-employed business activity that may belong in T2125.
+Check whether available facts suggest self-employed business activity that may belong in T2125.
 
 Typical indicators:
 
@@ -97,21 +77,15 @@ Typical candidates:
 
 - direct client income
 - platform income
-- agency income that appears to relate to self-employed activity
-- T4A amounts that appear connected to contractor work
+- agency income tied to self-employed activity
+- T4A amounts connected to contractor work
 - foreign client income tied to the business
 
-Do not automatically include:
-
-- T4 employment income
-- unclear reimbursements
-- mixed or unsupported deposits
-- personal transfers
-- receipts with no plausible business source
+Do not automatically include T4 employment income, unclear reimbursements, mixed or unsupported deposits, personal transfers, or receipts with no plausible business source.
 
 ### 3. Separate likely business income from other amounts
 
-Group identified amounts into these buckets:
+Group identified amounts into:
 
 - likely T2125 business income
 - likely T1 employment income
@@ -124,35 +98,19 @@ Do not settle mixed classification if the facts are weak.
 
 ### 4. Assess support strength
 
-For each candidate business income source, assess support such as:
-
-- slip
-- invoice summary
-- bookkeeping record
-- platform summary
-- deposit record
-- user-prepared income summary
-
-Mark support strength as one of:
-
-- sufficient
-- partial
-- weak
-- none
+For each candidate source, mark support as `sufficient`, `partial`, `weak`, or `none`.
 
 If the source appears real but is not well-supported, preserve it as provisional.
 
 ### 5. Build the provisional T2125 income mapping
 
-Map supported or plausibly supported business income sources into a provisional T2125 gross business income result.
+Map supported or plausibly supported sources into a provisional T2125 gross business income result.
 
-Use broad, careful mapping.
-
-Examples of acceptable mapping logic:
+Acceptable mapping logic:
 
 - direct client invoices supported by summaries and deposits → likely include
 - platform income supported by platform summary → likely include
-- T4A connected to contractor work → likely include or include_with_caution
+- T4A connected to contractor work → include or include_with_caution
 - reimbursement mixed into income → exclude_or_clarify
 - unexplained deposit → exclude_or_clarify
 
@@ -174,9 +132,7 @@ Only flag issues that materially affect readiness.
 
 ### 7. Prepare downstream routing
 
-Based on the provisional T2125 income result, indicate likely downstream uses.
-
-Common downstream uses:
+Indicate likely downstream uses:
 
 - `checking-gst-hst`
 - `reviewing-foreign-platform-and-us-income`
@@ -185,155 +141,43 @@ Common downstream uses:
 
 Do not run those workflows inside this skill.
 
-## Output Requirements
+## Resource Map
 
-Return the result using the shared internal output schema.
+- `../../references/shared-input-schema.md`: read to populate input fields
+- `../../references/shared-output-schema.md`: read to format output fields
 
-At minimum, include:
+## Output
 
-- `facts_accepted`
-- `mappings_proposed`
-- `flags`
-- `open_questions`
-- `status`
-- `client_safe_summary`
+Return using the shared output schema. Include:
 
-Also include a clear business income mapping grouped into:
+- `facts_accepted`: usable income facts the skill relied on
+- `mappings_proposed`: use entries such as likely include in T2125 gross business income, include with caution, exclude_or_clarify, needs_manual_review; use a T2125 field reference consistent with repo standards
+- `flags`: use `missing_support`, `mapping_uncertain`, `possible_duplication`, `cross_border_issue` where applicable
+- `open_questions`: only questions needed to resolve meaningful uncertainty
+- `status`: one of `ready_for_entry`, `clarification_required`, `incomplete`, `cpa_review_recommended`, `not_applicable`
+- `client_safe_summary`: plain language, short and practical
 
-- likely included in T2125 gross business income
+Also include a business income mapping grouped into:
+
+- likely included in T2125 gross business income (show source label, type, amount if known, support strength, confidence level)
 - excluded or separately reviewed amounts
 - unclear amounts needing clarification
 
 ## Status Guidance
 
-Use:
-
-- `ready_for_entry` when likely T2125 business income is sufficiently organized for downstream summary use
-- `clarification_required` when business income is mostly identified but support or classification is incomplete
-- `cpa_review_recommended` when the file is materially mixed, foreign, duplicated, or unclear
-- `incomplete` when major business income support is still missing
-- `not_applicable` when T2125 business income does not appear relevant from the facts provided
+- `ready_for_entry`: likely T2125 business income is sufficiently organized for downstream summary use
+- `clarification_required`: business income is mostly identified but support or classification is incomplete
+- `cpa_review_recommended`: file is materially mixed, foreign, duplicated, or unclear
+- `incomplete`: major business income support is still missing
+- `not_applicable`: T2125 business income does not appear relevant from the facts provided
 
 Do not use `ready_for_entry` if the income picture still depends heavily on unsupported explanations.
 
-## Important Boundaries
+## Validation
 
-Do not:
-
-- treat all T4A amounts as automatically belonging in T2125
-- treat all deposits as business income
-- conclude employment vs contractor status
-- conclude PSB status
-- determine final GST/HST treatment
-- determine final foreign exchange treatment from weak records
-- state that the user is ready to file
-
-Use this standard phrase where relevant:
-
-> That is outside what this workflow covers. It is a question for a CPA before you file.
-
-## Required Final Output Shape
-
-### Likely Included in T2125 Gross Business Income
-
-For each included or provisionally included source, show:
-
-- source label
-- source type
-- amount if known
-- support strength
-- confidence level
-
-### Excluded or Separately Reviewed Amounts
-
-List amounts that should not be treated as straightforward T2125 business income at this stage.
-
-### Open Questions
-
-List only the questions that materially affect the T2125 income result.
-
-### Readiness Result
-
-State whether the T2125 income side is:
-
-- ready for next step
-- clarification required
-- incomplete
-- CPA review recommended
-- not applicable
-
-### Client-Safe Summary
-
-Write a short plain-language summary that explains:
-
-- what likely belongs in T2125 gross business income
-- what is still unclear
-- what the next step should be
-
-## Output Pattern
-
-Use this structure by default.
-
-### facts_accepted
-
-Capture the usable income facts the skill relied on.
-
-### mappings_proposed
-
-Use mapping entries such as:
-
-- likely include in T2125 gross business income
-- include with caution
-- exclude_or_clarify
-- needs_manual_review
-
-Use a T2125 field reference that stays consistent with repo standards.
-
-### flags
-
-Use standardized flags such as:
-
-- `missing_support`
-- `mapping_uncertain`
-- `possible_duplication`
-- `cross_border_issue`
-
-### open_questions
-
-Ask only the questions needed to resolve meaningful uncertainty.
-
-### status
-
-End with one of the repository standard result values.
-
-### client_safe_summary
-
-Use plain language. Keep it short and practical.
-
-## Example
-
-### Example Input
-
-- direct client invoice summary present
-- one T4A uploaded
-- Upwork income summary uploaded
-- one reimbursement appears in the income log
-- no complete invoice set for one smaller client
-
-### Example Output Shape
-
-- direct client income provisionally included in T2125 gross business income
-- Upwork income provisionally included, with cross-border flag
-- T4A included with caution because business link is plausible but should remain visible
-- reimbursement excluded pending clarification
-- one unsupported client source flagged
-- status set to clarification required
-
-## Related Downstream Uses
-
-This skill may feed:
-
-- `checking-gst-hst`
-- `reviewing-foreign-platform-and-us-income`
-- `generating-self-entry-summary`
-- `generating-cpa-handoff-summary`
+- Every candidate income source is mapped or explicitly excluded.
+- Each mapping entry has a confidence level and support strength.
+- At least one downstream skill is identified in routing.
+- `status` is one of the five standard values.
+- `client_safe_summary` is present and contains no tax advice.
+- No T4 employment income is silently included in the T2125 mapping.

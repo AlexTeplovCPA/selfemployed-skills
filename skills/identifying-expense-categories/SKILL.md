@@ -1,35 +1,38 @@
 ---
 name: identifying-expense-categories
-description: organize the expense categories of a canadian it contractor for tax preparation, self-entry, or cpa handoff. use when the user needs to sort business expenses into major buckets, identify possible capital items, separate mixed or unclear spending, or check what expense support is missing before preparing t2125 fields or related summaries.
+description: Organize the expense categories of a Canadian IT contractor before deeper T2125 field mapping begins. Use when the user needs to sort business expenses into major buckets, identify possible capital items, separate mixed or unclear spending, or check what expense support is missing before preparing T2125 fields or related summaries. Accepts expense logs, bookkeeping exports, transaction summaries, receipts, and chat descriptions. Produces a grouped expense category map with support status, flags, and downstream routing toward T2125 field skills.
+metadata:
+    author: Teplov CPA
+    version: 1.0
+    updated: 2026-04-17
 ---
 
 # Identifying Expense Categories
 
-## Purpose
-
-Organize the user’s expense universe before deeper field mapping begins.
-
-This skill groups expenses into practical categories, identifies missing or weak support, separates likely current expenses from possible capital items, and prepares the file for downstream T2125 field review.
-
-This skill organizes information provided by the user. It does not verify completeness or accuracy.
-
-> Do not type your SIN, business number, account numbers, or client names into this conversation. Use general descriptions and rounded amounts where possible. If uploading tax slips, screenshots, receipts, or transaction exports, redact sensitive identifiers first. Avoid sharing sensitive information you would not be comfortable storing in a third-party system.
+Organize the user's expense universe before deeper T2125 field mapping begins.
 
 ## Core Rules
 
-- organize expenses before trying to finalize field-level treatment
-- group expenses by practical category first, not by guesswork about final deductibility
-- separate likely routine expenses from possible capital items
-- preserve uncertainty where support is incomplete or mixed
-- identify missing or weak support that affects downstream review
-- organize and flag, do not advise
-- do not determine final deductibility
-- do not determine final GST/HST treatment
-- do not force every expense into a final T2125 line at this stage
+- Organize expenses before trying to finalize field-level treatment.
+- Group expenses by practical category first, not by guesswork about final deductibility.
+- Separate likely routine expenses from possible capital items.
+- Preserve uncertainty where support is incomplete or mixed.
+- Identify missing or weak support that affects downstream review.
+- Organize and flag, do not advise.
+- Do not determine final deductibility.
+- Do not determine final GST/HST treatment.
+- Do not force every expense into a final T2125 line at this stage.
+- Do not state that a category is definitely allowable.
+- Do not finalize capital vs current treatment where uncertainty remains.
+- Do not conclude that mixed-use items are fully business.
+- Do not state that the user is ready to file.
+- Use this phrase where relevant: "That is outside what this workflow covers. It is a question for a CPA before you file."
 
-## Inputs This Skill Can Accept
+## Inputs
 
-Prefer any of the following:
+Do not ask the user to share SIN, business number, account numbers, or client names. Use general descriptions and rounded amounts.
+
+Accept any of:
 
 - expense log or CSV
 - bookkeeping export
@@ -46,32 +49,13 @@ Minimum useful input:
 - date or approximate timing
 - user explanation of what the expense was for
 
-## Internal Input Fields to Read
-
-Read from the shared input schema where available:
-
-- `case_id`
-- `tax_year`
-- `engagement_mode`
-- `user_profile`
-- `facts.business_activity`
-- `facts.home_office`
-- `facts.vehicle_use`
-- `documents.expense_support`
-- `transactions.expense_items`
-- `review_state`
-
-See:
-- `../../references/shared-input-schema.md`
-- `../../references/shared-output-schema.md`
+Read from the shared input schema where available: `case_id`, `tax_year`, `engagement_mode`, `user_profile`, `facts.business_activity`, `facts.home_office`, `facts.vehicle_use`, `documents.expense_support`, `transactions.expense_items`, `review_state`.
 
 ## Workflow
 
 ### 1. Establish the expense context
 
-Identify the broad expense pattern first.
-
-Determine whether the file appears to include:
+Determine whether the file includes:
 
 - routine operating expenses
 - meals and entertainment
@@ -83,11 +67,11 @@ Determine whether the file appears to include:
 - one-time equipment or possible capital items
 - other unclear or mixed expenses
 
-If the source data is incomplete, continue with the broadest useful categorization and preserve uncertainty.
+If source data is incomplete, continue with the broadest useful categorization and preserve uncertainty.
 
 ### 2. Group expenses into practical categories
 
-Sort expenses into major working categories such as:
+Sort expenses into:
 
 - software and cloud tools
 - office and admin expenses
@@ -106,39 +90,15 @@ Use practical grouping first. Do not force a final tax treatment unless the cate
 
 ### 3. Assess support quality
 
-For each category or item, identify what support exists.
-
-Examples:
-
-- receipt
-- invoice
-- bookkeeping entry
-- expense log entry
-- bank or card record
-- user explanation only
-
-Mark support status as one of:
-
-- received
-- mentioned_not_provided
-- missing
-- not_applicable
-- unclear
+For each category or item, mark support status as `received`, `mentioned_not_provided`, `missing`, `not_applicable`, or `unclear`.
 
 Do not treat weak memory-based descriptions as strong support.
 
 ### 4. Separate likely routine expenses from possible capital items
 
-Identify expenses that may require a later capital review.
+Flag expenses that may require a later capital review.
 
-Common examples:
-
-- laptop purchases
-- monitors
-- phones
-- desks or office furniture
-- equipment bundles
-- other large one-time purchases
+Common examples: laptop purchases, monitors, phones, desks or office furniture, equipment bundles, other large one-time purchases.
 
 Do not finalize the treatment here. Route likely capital items forward for later review.
 
@@ -158,9 +118,7 @@ Only flag issues that matter for downstream mapping or readiness.
 
 ### 6. Prepare downstream routing
 
-Based on the organized expense picture, indicate which downstream skills are likely relevant.
-
-Common downstream uses:
+Indicate which downstream skills are likely relevant:
 
 - `organizing-t2125-routine-operating-expenses`
 - `organizing-t2125-8523-meals-and-entertainment`
@@ -170,166 +128,46 @@ Common downstream uses:
 - `generating-self-entry-summary`
 - `generating-cpa-handoff-summary`
 
-Do not run downstream logic inside this skill.  
-Only prepare the expense side of the file for later review.
+Do not run downstream logic inside this skill.
 
-## Output Requirements
+## Resource Map
 
-Return the result using the shared internal output schema.
+- `references/vendor-categories.md`: read when categorizing vendor types or unusual expense descriptions
+- `../../references/shared-input-schema.md`: read to populate input fields
+- `../../references/shared-output-schema.md`: read to format output fields
 
-At minimum, include:
+## Output
 
-- `facts_accepted`
-- `mappings_proposed`
-- `flags`
-- `open_questions`
-- `status`
-- `client_safe_summary`
+Return using the shared output schema. Include:
 
-Also include a clear expense category map grouped into:
+- `facts_accepted`: usable expense facts the skill relied on
+- `mappings_proposed`: broad provisional mappings such as likely routine operating expenses, likely meals and entertainment, likely home office related costs, likely capital items requiring separate review, likely unclear or other expenses; do not overstate confidence
+- `flags`: use `missing_support`, `mapping_uncertain`, `possible_personal_component`, `possible_capital_item`, `possible_duplication` where applicable
+- `open_questions`: only questions needed to resolve meaningful uncertainty
+- `status`: one of `ready_for_entry`, `clarification_required`, `incomplete`, `cpa_review_recommended`
+- `client_safe_summary`: plain language, short and practical
 
-- confirmed categories
+Also include an expense category map grouped into:
+
+- confirmed categories (show category label, representative items or examples, support status, likely downstream area)
 - possible capital items
 - mixed or unclear items
 - missing-support items
 
 ## Status Guidance
 
-Use:
-
-- `ready_for_entry` when the expense picture appears sufficiently organized for downstream field mapping
-- `clarification_required` when categories are mostly identified but support or classification is incomplete
-- `cpa_review_recommended` when the expense picture includes material mixed-use, capital, or unclear items
-- `incomplete` when major expense information is still missing
+- `ready_for_entry`: expense picture is sufficiently organized for downstream field mapping
+- `clarification_required`: categories are mostly identified but support or classification is incomplete
+- `cpa_review_recommended`: expense picture includes material mixed-use, capital, or unclear items
+- `incomplete`: major expense information is still missing
 
 Do not use `ready_for_entry` if significant categories remain weakly supported or materially unclear.
 
-## Important Boundaries
+## Validation
 
-Do not:
-
-- determine final deductibility
-- state that a category is definitely allowable
-- finalize capital vs current treatment where uncertainty remains
-- determine final GST/HST treatment
-- conclude that mixed-use items are fully business
-- state that the user is ready to file
-
-Use this standard phrase where relevant:
-
-> That is outside what this workflow covers. It is a question for a CPA before you file.
-
-## Required Final Output Shape
-
-### Expense Category Map
-
-For each category, show:
-
-- category label
-- representative items or examples
-- support status
-- likely downstream area
-
-### Possible Capital Items
-
-List items that may need separate capital review.
-
-### Mixed or Unclear Items
-
-List only the items that materially affect the next step.
-
-### Open Questions
-
-List only useful unresolved questions.
-
-### Readiness Result
-
-State whether the expense side of the file is:
-
-- ready for next step
-- clarification required
-- incomplete
-- CPA review recommended
-
-### Client-Safe Summary
-
-Write a short plain-language summary that explains:
-
-- what categories were identified
-- what still looks unclear
-- what the next step should be
-
-## Output Pattern
-
-Use this structure by default.
-
-### facts_accepted
-
-Capture the usable expense facts the skill relied on.
-
-### mappings_proposed
-
-Use broad, provisional mappings where supported, such as:
-
-- likely routine operating expenses
-- likely meals and entertainment
-- likely home office related costs
-- likely capital items requiring separate review
-- likely unclear or other expenses
-
-Do not overstate confidence.
-
-### flags
-
-Use standardized flags such as:
-
-- `missing_support`
-- `mapping_uncertain`
-- `possible_personal_component`
-- `possible_capital_item`
-- `possible_duplication`
-
-### open_questions
-
-Ask only the questions needed to resolve meaningful uncertainty.
-
-### status
-
-End with one of the repository standard result values.
-
-### client_safe_summary
-
-Use plain language. Keep it short and practical.
-
-## Example
-
-### Example Input
-
-- user uploaded an expense log
-- recurring AWS and GitHub charges appear in the file
-- one restaurant charge is described as a client dinner
-- internet bills may be partly personal and partly business
-- one laptop purchase appears in the transaction list
-- one coffee meeting has no receipt
-
-### Example Output Shape
-
-- routine software and cloud expenses identified
-- meal expense grouped separately
-- internet expenses flagged as possibly mixed-use
-- laptop purchase flagged as a possible capital item
-- one item missing support
-- status set to clarification required
-- downstream routing to routine expenses, meals, and capital-assets review
-
-## Related Downstream Uses
-
-This skill may feed:
-
-- `organizing-t2125-routine-operating-expenses`
-- `organizing-t2125-8523-meals-and-entertainment`
-- `organizing-t2125-business-use-of-home`
-- `organizing-t2125-capital-assets-and-cca`
-- `organizing-t2125-other-expenses`
-- `generating-self-entry-summary`
-- `generating-cpa-handoff-summary`
+- Every expense category present in the file is mapped or flagged.
+- Possible capital items are identified in a separate group.
+- Each category has a support status.
+- At least one downstream skill is identified in routing.
+- `status` is one of the four standard values.
+- `client_safe_summary` is present and contains no tax advice.

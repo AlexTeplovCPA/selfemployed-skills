@@ -1,34 +1,36 @@
 ---
 name: identifying-income-sources
-description: organize the income sources of a canadian it contractor for tax preparation, self-entry, or cpa handoff. use when the user needs to identify where business income came from, match income to supporting records, separate business income from other amounts, or check whether any income streams may be missing before preparing t2125 or related t1 entries.
+description: Organize the income sources of a Canadian IT contractor before deeper field mapping begins. Use when the user needs to identify where business income came from, match income to supporting records, separate business income from other amounts, or check whether income streams may be missing before preparing T2125 or related T1 entries. Accepts slips, platform summaries, bookkeeping exports, and chat descriptions. Produces an income-source register with support status, flags, and downstream routing toward T2125, GST/HST, or summary skills.
+metadata:
+    author: Teplov CPA
+    version: 1.0
+    updated: 2026-04-17
 ---
 
 # Identifying Income Sources
 
-## Purpose
-
-Organize the user’s income sources before deeper field mapping begins.
-
-This skill identifies how money came in during the tax year, groups income by source, links each source to available support, and flags missing or unclear areas that may affect later T2125 or T1 preparation.
-
-This skill organizes information provided by the user. It does not verify completeness or accuracy.
-
-> Do not type your SIN, business number, account numbers, or client names into this conversation. Use general descriptions and rounded amounts where possible. If uploading tax slips or screenshots, redact sensitive identifiers first. Avoid sharing sensitive information you would not be comfortable storing in a third-party system.
+Organize the user's income sources before deeper field mapping begins.
 
 ## Core Rules
 
-- organize income sources before trying to finalize field amounts
-- identify income by channel and support, not by vague tax concepts alone
-- do not assume deposits are income unless the user confirms the source or support exists
-- separate business income, slip-based income, reimbursements, and unclear receipts where possible
-- preserve uncertainty when support is incomplete
-- organize and flag, do not advise
-- do not determine final filing positions
-- do not conclude employment status, contractor status, or PSB status
+- Organize income sources before trying to finalize field amounts.
+- Identify income by channel and support, not by vague tax concepts alone.
+- Do not assume deposits are income unless the user confirms the source or support exists.
+- Separate business income, slip-based income, reimbursements, and unclear receipts where possible.
+- Preserve uncertainty when support is incomplete.
+- Organize and flag, do not advise.
+- Do not determine final filing positions.
+- Do not conclude employment status, contractor status, or PSB status.
+- Do not invent income totals.
+- Do not assume all T4A amounts belong in T2125.
+- Do not state that the user is ready to file.
+- Use this phrase where relevant: "That is outside what this workflow covers. It is a question for a CPA before you file."
 
-## Inputs This Skill Can Accept
+## Inputs
 
-Prefer any of the following:
+Do not ask the user to share SIN, business number, account numbers, or client names. Use general descriptions and rounded amounts.
+
+Accept any of:
 
 - user explanation in chat
 - uploaded slips such as T4A or T4
@@ -46,32 +48,11 @@ Minimum useful input:
 - whether any slips were received
 - whether any platform or foreign income existed
 
-## Internal Input Fields to Read
-
-Read from the shared input schema where available:
-
-- `case_id`
-- `tax_year`
-- `engagement_mode`
-- `user_profile`
-- `facts.business_activity`
-- `facts.income_channels`
-- `facts.slips_received`
-- `facts.foreign_income`
-- `documents.slips`
-- `documents.summaries`
-- `transactions.income_items`
-- `review_state`
-
-See:
-- `../../references/shared-input-schema.md`
-- `../../references/shared-output-schema.md`
+Read from the shared input schema where available: `case_id`, `tax_year`, `engagement_mode`, `user_profile`, `facts.business_activity`, `facts.income_channels`, `facts.slips_received`, `facts.foreign_income`, `documents.slips`, `documents.summaries`, `transactions.income_items`, `review_state`.
 
 ## Workflow
 
 ### 1. Establish the income context
-
-Identify the broad pattern first.
 
 Determine whether the user had:
 
@@ -82,13 +63,13 @@ Determine whether the user had:
 - reimbursements or other unclear receipts
 - mixed sole proprietor and corporate activity if mentioned
 
-If the year or business structure is unclear, keep the context provisional and continue with the broadest useful intake.
+If the year or business structure is unclear, keep context provisional and continue with the broadest useful intake.
 
 ### 2. Identify income channels
 
 Group income by source, not by return line.
 
-Common channel types include:
+Common channel types:
 
 - direct client income
 - agency income
@@ -100,13 +81,7 @@ Common channel types include:
 - reimbursements
 - other or unclear receipts
 
-For each channel, capture what is known about:
-
-- payer or source label
-- country if relevant
-- currency if relevant
-- payment method if known
-- whether the source appears connected to business activity
+For each channel, capture what is known about payer or source label, country and currency if relevant, payment method if known, and whether the source appears connected to business activity.
 
 Do not force classification beyond what the facts support.
 
@@ -122,21 +97,13 @@ For each identified income source, look for support such as:
 - bank deposit record
 - user-prepared income spreadsheet
 
-Mark each support item by status:
+Mark each support item as: `received`, `mentioned_not_provided`, `missing`, `not_applicable`, or `unclear`.
 
-- received
-- mentioned_not_provided
-- missing
-- not_applicable
-- unclear
-
-Do not treat “user remembers it” as the same as documentary support.
+Do not treat "user remembers it" as the same as documentary support.
 
 ### 4. Separate likely business income from other amounts
 
-Use the available facts to organize likely routing.
-
-Typical buckets:
+Group identified amounts into:
 
 - likely T2125 business income
 - likely T1 employment income
@@ -145,8 +112,7 @@ Typical buckets:
 - foreign or platform income needing separate review
 - unclear receipts needing follow-up
 
-Do not give final legal or tax conclusions.  
-Do not settle ambiguous classification where support is weak.
+Do not give final legal or tax conclusions. Do not settle ambiguous classification where support is weak.
 
 ### 5. Identify missing or unclear areas
 
@@ -164,9 +130,7 @@ Only flag issues that matter for later mapping or readiness.
 
 ### 6. Prepare downstream routing
 
-Based on the organized income picture, indicate which downstream skills are likely relevant.
-
-Common downstream uses:
+Indicate which downstream skills are likely relevant:
 
 - `organizing-t2125-gross-business-income`
 - `checking-gst-hst`
@@ -175,23 +139,25 @@ Common downstream uses:
 - `generating-self-entry-summary`
 - `generating-cpa-handoff-summary`
 
-Do not perform those workflows here.  
-Only prepare the income side of the file for them.
+Do not perform those workflows here.
 
-## Output Requirements
+## Resource Map
 
-Return the result using the shared internal output schema.
+- `../../references/shared-input-schema.md`: read to populate input fields
+- `../../references/shared-output-schema.md`: read to format output fields
 
-At minimum, include:
+## Output
 
-- `facts_accepted`
-- `mappings_proposed`
-- `flags`
-- `open_questions`
-- `status`
-- `client_safe_summary`
+Return using the shared output schema. Include:
 
-Also include a clear income-source register grouped into:
+- `facts_accepted`: usable income facts the skill relied on
+- `mappings_proposed`: broad provisional mappings such as likely T2125 business income, likely T1 employment income, likely T1 T4A-related amount, foreign/platform income requiring separate review; do not overstate confidence
+- `flags`: use `missing_support`, `mapping_uncertain`, `possible_duplication`, `cross_border_issue` where applicable; only flag items that materially affect the next step
+- `open_questions`: only questions needed to resolve meaningful uncertainty
+- `status`: one of `ready_for_entry`, `clarification_required`, `incomplete`, `cpa_review_recommended`
+- `client_safe_summary`: plain language, short and practical
+
+Also include an income-source register grouped into:
 
 - confirmed income sources
 - mentioned but unsupported sources
@@ -200,135 +166,18 @@ Also include a clear income-source register grouped into:
 
 ## Status Guidance
 
-Use:
-
-- `ready_for_entry` when the income picture appears sufficiently organized for downstream field mapping
-- `clarification_required` when income sources are identified but support or classification is incomplete
-- `cpa_review_recommended` when classification is materially mixed or complex
-- `incomplete` when major parts of the income picture are still missing
+- `ready_for_entry`: income picture is sufficiently organized for downstream field mapping
+- `clarification_required`: income sources are identified but support or classification is incomplete
+- `cpa_review_recommended`: classification is materially mixed or complex
+- `incomplete`: major parts of the income picture are still missing
 
 Do not use `ready_for_entry` simply because the user described their income in general terms.
 
-## Important Boundaries
+## Validation
 
-Do not:
-
-- invent income totals
-- assume all deposits are income
-- assume all T4A amounts belong in T2125
-- conclude employment vs contractor status
-- conclude PSB status
-- determine final GST/HST treatment
-- state that the user is ready to file
-
-Use this standard phrase where relevant:
-
-> That is outside what this workflow covers. It is a question for a CPA before you file.
-
-## Required Final Output Shape
-
-### Income Source Register
-
-For each source, show:
-
-- source label
-- channel type
-- slip or non-slip
-- currency if relevant
-- support status
-- likely downstream area
-
-### Missing Support
-
-List only the missing records that materially affect the next step.
-
-### Open Questions
-
-List only useful unresolved questions.
-
-### Readiness Result
-
-State whether the income side of the file is:
-
-- ready for next step
-- clarification required
-- incomplete
-- CPA review recommended
-
-### Client-Safe Summary
-
-Write a short plain-language summary that explains:
-
-- what income sources were identified
-- what is still missing or unclear
-- what the next step should be
-
-## Output Pattern
-
-Use this structure by default.
-
-### facts_accepted
-
-Capture the usable income facts the skill relied on.
-
-### mappings_proposed
-
-Use broad, provisional mappings where supported, such as:
-
-- likely T2125 business income
-- likely T1 employment income
-- likely T1 T4A-related amount
-- foreign/platform income requiring separate review
-
-Do not overstate confidence.
-
-### flags
-
-Use standardized flags such as:
-
-- `missing_support`
-- `mapping_uncertain`
-- `possible_duplication`
-- `cross_border_issue`
-
-### open_questions
-
-Ask only the questions needed to resolve meaningful uncertainty.
-
-### status
-
-End with one of the repository standard result values.
-
-### client_safe_summary
-
-Use plain language. Keep it short and practical.
-
-## Example
-
-### Example Input
-
-- User had two direct clients
-- User received one T4A
-- User had Upwork income in USD
-- User is unsure whether one reimbursed software payment was included in income
-- User has an uploaded T4A and a platform summary, but no complete invoice set
-
-### Example Output Shape
-
-- direct client income identified but support incomplete
-- T4A identified and linked to a likely income source
-- Upwork income identified as foreign/platform income
-- reimbursement flagged for clarification
-- status set to clarification required
-- downstream routing to T2125 gross income and foreign/platform income review
-
-## Related Downstream Uses
-
-This skill may feed:
-
-- `organizing-t2125-gross-business-income`
-- `checking-gst-hst`
-- `reviewing-foreign-platform-and-us-income`
-- `reviewing-instalments-and-tax-payments`
-- `generating-self-entry-summary`
-- `generating-cpa-handoff-summary`
+- Income-source register covers all identified channels or marks unused ones as `not_applicable`.
+- Every source has a support status — no source is left unlabeled.
+- At least one downstream skill is identified in routing.
+- `status` is one of the four standard values.
+- `client_safe_summary` is present and contains no tax advice.
+- No provisional mapping overstates confidence where support is weak.
