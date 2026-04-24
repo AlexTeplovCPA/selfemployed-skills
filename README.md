@@ -1,6 +1,6 @@
 # it-contractors-skills
 
-Client-facing AI workflow skills for Canadian IT contractors.
+CPA-developed workflows that help Canadian IT contractors use AI more safely to organize their tax information, identify missing facts, and prepare for filing or CPA review.
 
 This repository contains structured preparation workflows for Canadian IT contractors who want to:
 
@@ -8,7 +8,7 @@ This repository contains structured preparation workflows for Canadian IT contra
 - prepare for CPA review
 - or enter their return into tax software themselves
 
-These workflows are built from real accounting practice. They are designed to help users move from messy inputs to structured outputs through repeatable, profession-grounded workflows.
+These workflows are built from real accounting practice and designed for a reality that already exists: many contractors are already using AI to help with tax questions and tax preparation. The goal here is not to replace CPA judgment. It is to give users a more structured way to use AI for preparation, organization, and issue spotting before filing or handoff.
 
 The internal design is modular and form-aware. The user experience should still feel simple.
 
@@ -16,13 +16,13 @@ The internal design is modular and form-aware. The user experience should still 
 
 ## Repository Purpose
 
-This repository helps a Canadian IT contractor organize tax information into one of three main outcomes:
+This repository helps Canadian IT contractors use AI in a more structured way when preparing tax information. Instead of relying on one-off prompts or generic tax answers, the workflows guide users toward one of three practical outcomes:
 
 - a grouped-by-form self-entry summary
 - a CPA handoff summary
 - a missing-items and open-questions summary
 
-These workflows are for preparation and organization. They are not a substitute for CPA judgment.
+These workflows are for preparation, organization, and issue spotting. They are not a substitute for CPA judgment, final filing positions, or legal conclusions.
 
 ---
 
@@ -30,10 +30,11 @@ These workflows are for preparation and organization. They are not a substitute 
 
 This repository is for:
 
-- Canadian IT contractors preparing their own tax information
+- Canadian IT contractors who already use AI and want a safer workflow for tax preparation
+- contractors preparing their own tax information before filing or software entry
 - sole proprietors with T1 and T2125 reporting needs
 - incorporated or mixed-structure contractors who need cleaner records before CPA review
-- users who want a more structured path before entering amounts into tax software
+- users who want more structure, clearer boundaries, and fewer missing facts before handoff
 - practitioners who want a client-facing intake structure for IT contractor files
 
 This repository is not for:
@@ -57,6 +58,8 @@ These workflows can help users:
 - organize GST/HST facts
 - organize foreign and platform income support
 - organize instalments and tax payment information
+- preserve uncertainty where facts are incomplete
+- flag missing support and open questions that should be resolved before filing
 - generate a self-entry summary
 - generate a CPA handoff summary
 - identify missing items before filing or handoff
@@ -66,8 +69,36 @@ They do not:
 - provide tax advice
 - verify completeness or accuracy
 - determine final filing positions
+- resolve ambiguous tax treatment
 - replace CPA review
 - make legal conclusions on matters such as employment status or PSB status
+
+---
+
+## Why Use These Workflows Instead of a Blank AI Prompt
+
+Generic AI tax prompts often fail in predictable ways: they accept incomplete facts too easily, blur preparation with advice, and sound more certain than the input supports.
+
+These workflows are designed to reduce that risk by giving the model a tighter job:
+
+- ask for the facts that matter
+- organize those facts into a structured output
+- preserve uncertainty where support is incomplete
+- flag issues that should be reviewed before filing
+- route the result toward self-entry, CPA handoff, or missing-items follow-up
+
+The result should feel less like asking AI for an answer and more like using a CPA-designed preparation process.
+
+## How a Contractor Would Use This Repository
+
+A typical user flow looks like this:
+
+1. Start with broad intake skills to organize documents, income sources, and expense categories.
+2. Run narrower skills for the areas that need detail, such as gross income, home office, meals, or capital assets.
+3. Use cross-cutting review skills for issues like GST/HST, foreign income, instalments, or PSB risk facts.
+4. Generate the final output that best fits the situation: self-entry summary, CPA handoff summary, or missing-items summary.
+
+The goal is not to answer every tax question in one step. The goal is to move from messy inputs to a cleaner, better-scoped file.
 
 ---
 
@@ -282,9 +313,11 @@ Platform-specific files such as `agents/openai.yaml` are optional and may be add
 
 ---
 
-## How to Use
+## How Skills Are Invoked
 
 Once installed in a compatible AI agent, the relevant workflow should load automatically when the user's request matches the skill.
+
+These workflows are designed so the user does not need to guess which prompt to write or which tax issue to analyze first.
 
 Example:
 
@@ -349,7 +382,7 @@ These workflows are built from real accounting practice. If you adapt or use the
 
 Built by [Alex Teplov, CPA](https://teplov.ca).
 
-Specialized accounting practices in Canada focused on IT contractors and e-commerce sellers. These workflows are built from real operational bottlenecks encountered in practice.
+These workflows are built from real accounting practice focused on Canadian IT contractors. They are designed around a simple reality: many clients already use AI for tax questions, but they need better structure, clearer boundaries, and a more reliable preparation process before filing or CPA review.
 
 - [teplov.ca](https://teplov.ca/) — IT contractor tax practice
 - [ecomcount.com](https://ecomcount.com/) — e-commerce seller tax practice
