@@ -24,6 +24,16 @@ This repository helps Canadian IT contractors use AI in a more structured way wh
 
 These workflows are for preparation, organization, and issue spotting. They are not a substitute for CPA judgment, final filing positions, or legal conclusions.
 
+## How This Repository Fits the Broader System
+
+This repository is the IT contractor client-facing layer in a three-repository system:
+
+- `cpa-skills` — practitioner-facing workflow library for accountants and bookkeepers
+- `it-contractors-skills` — client-facing preparation workflows for Canadian IT contractors
+- `ecommerce-skills` — client-facing preparation workflows for Canadian e-commerce sellers
+
+The role of `it-contractors-skills` is to show how CPA-designed AI workflows can be applied to one specific client niche with clearer boundaries, cleaner preparation, and better handoff quality.
+
 ---
 
 ## Who This Is For
@@ -366,7 +376,7 @@ Use of these workflows does not replace review by a qualified CPA before filing.
 ## Related Repositories
 
 - [`cpa-skills`](https://github.com/AlexTeplovCPA/cpa-skills) — practitioner-facing workflows for CPAs and bookkeepers
-- [`ecommerce-skills`](https://github.com/AlexTeplovCPA/ecommerce-skills) — client-facing workflows for Canadian e-commerce sellers
+- [`ecommerce-skills`](https://github.com/AlexTeplovCPA/ecommerce-skills) — client-facing preparation workflows for Canadian e-commerce sellers
 
 ---
 
